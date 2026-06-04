@@ -177,7 +177,7 @@ public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
 
 충전 금액과 결제수단을 고르는 화면을 만들고, iamport로 카카오페이 결제를 붙였습니다.
 
-<img src="docs/images/kakao-pay.png" width="45%">
+<img src="docs/images/point-charge.png" height="185"> <img src="docs/images/kakao-pay.png" height="185">
 
 ```javascript
 // payment.js
@@ -193,7 +193,7 @@ IMP.request_pay({
 
 하루 한 번 출석하면 포인트를 주고, 같은 날 중복 적립은 막습니다. 일요일이면 100, 평일이면 10포인트입니다.
 
-<img src="docs/images/attendance-stamp.png" height="200"> <img src="docs/images/attendance-rewards.png" height="200">
+<img src="docs/images/attendance-calendar.png" height="155"> <img src="docs/images/attendance-stamp.png" height="155"> <img src="docs/images/attendance-rewards.png" height="155">
 
 ```java
 // EventService.event()
