@@ -9,6 +9,9 @@
 ![Spring Security](https://img.shields.io/badge/Spring_Security-6-6DB33F?logo=springsecurity&logoColor=white)
 ![JPA](https://img.shields.io/badge/JPA_/_Hibernate-59666C?logo=hibernate&logoColor=white)
 ![Oracle](https://img.shields.io/badge/Oracle-F80000?logo=oracle&logoColor=white)
+![Thymeleaf](https://img.shields.io/badge/Thymeleaf-005F0F?logo=thymeleaf&logoColor=white)
+![WebSocket](https://img.shields.io/badge/WebSocket-STOMP%2FSockJS-010101)
+![License](https://img.shields.io/badge/License-MIT-blue)
 
 <img src="docs/images/main.png" width="90%">
 
@@ -47,7 +50,7 @@ Oracle 없이 H2로 바로 돌려볼 수 있습니다. 실행하면 데모 데�
 ./gradlew bootRun --args="--spring.profiles.active=h2"
 ```
 
-`http://localhost:9091` · 데모 계정 `backpark / 1234`
+> `http://localhost:9091` · 데모 계정 `backpark / 1234`
 
 ## 기술 스택
 
