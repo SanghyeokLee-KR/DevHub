@@ -1,0 +1,18 @@
+# GitHub Linguist — 언어 통계에서 서드파티/템플릿 자산 제외
+# (저장소가 "JavaScript 프로젝트"로 잘못 표기되던 것 교정)
+
+# 벤더 라이브러리 (jQuery · Bootstrap · Swiper · CodeMirror · RemixIcon 등)
+src/main/resources/static/libs/**   linguist-vendored
+
+# Bootstrap 템플릿 파생 스타일 (직접 디자인한 것이 아님)
+src/main/resources/static/css/**    linguist-vendored
+src/main/resources/static/scss/**   linguist-vendored
+
+# 압축본 · 소스맵
+*.min.js    linguist-vendored
+*.min.css   linguist-vendored
+*.map       linguist-generated
+
+# 문서 · 다이어그램
+docs/**       linguist-documentation
+diagrams/**   linguist-documentation
