@@ -23,3 +23,7 @@ src/main/resources/templates/services.html    linguist-vendored
 src/main/resources/templates/services2.html   linguist-vendored
 src/main/resources/templates/about.html       linguist-vendored
 src/main/resources/templates/contact.html     linguist-vendored
+src/main/resources/templates/index.html        linguist-vendored
+src/main/resources/templates/body/header.html  linguist-vendored
+src/main/resources/templates/body/footer.html  linguist-vendored
+src/main/resources/static/partials/**          linguist-vendored
