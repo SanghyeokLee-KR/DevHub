@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="myModal">
+    <div id="myModal11" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>UI 미리보기</h2>
+            <div class="container-modal">
+                <div class="left">
+                    <!-- 미리보기 위치 조정(임시) -->
+                    <div class="tiop">
+                        <!-- UI 미리보기 예시 -->
+                        <button id="btn01"> Button
+                        </button>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="button-container">
+                        <!-- info~ 바꾸기 -->
+                        <button onclick="showContent('info21')" style="background-color:#FF2424;">HTML</button>
+                        <button onclick="showContent('info22')">CSS</button>
+                    </div>
+                    <!-- info~ 바꾸기 -->
+                    <div id="info21" class="content active">
+                        <h2 style="color:#FF2424">HTML Code</h2>
+                        <!-- pre id 숫자 증가시켜 -->
+                        <button class="copy-button" onclick="copyCode('htmlCode10')" style="background-color: #1a1d20">Copy HTML</button>
+                        <pre id="htmlCode10">
+
+&lt;button&gt; Button &lt;/button&gt;
+
+            </pre>
+                    </div>
+                    <!-- info~ 바꾸기 -->
+                    <div id="info22" class="content">
+                        <h2 style="color:#007bff;">CSS Code</h2>
+                        <!-- pre id 숫자 증가시켜 -->
+                        <button class="copy-button" onclick="copyCode('cssCode10')" style="background-color: #1a1d20">Copy CSS</button>
+                        <pre id="cssCode10">
+button {
+  position: relative;
+  display: inline-block;
+  margin: 15px;
+  padding: 15px 30px;
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  color: #725AC1;
+  background: transparent;
+  cursor: pointer;
+  transition: ease-out 0.5s;
+  border: 2px solid #725AC1;
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 0 #725AC1;
+}
+
+button:hover {
+  color: white;
+  box-shadow: inset 0 -100px 0 0 #725AC1;
+}
+
+button:active {
+  transform: scale(0.9);
+}
+
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,189 @@
+.container-like input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.container-like {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+}
+
+.svg-like {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 50px;
+    width: 50px;
+    transition: all 0.3s;
+    fill: #FFFFFF;
+}
+
+.svg-like:hover {
+    transform: scale(1.1) rotate(-10deg);
+}
+
+.container input:checked ~ .svg-like {
+    fill: #2196F3;
+}
+
+
+/*==========================================*/
+.ul-come {
+    list-style-type: none;
+    padding: 0;
+}
+
+.ul-come li {
+    display: inline-block;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: transform 0.2s ease-out;
+}
+
+.ul-come li:hover {
+    transform: translateY(-3px); /* 호버 시 약간 위로 이동하는 효과 */
+}
+
+.icon-come {
+    font-size: 30px; /* 적당한 아이콘 크기 */
+    display: inline-block;
+    line-height: 1;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+/* 클릭(또는 탭) 효과를 추가하기 위해 active 상태 스타일링 */
+.ul-come li:active {
+    transform: translateY(0); /* 클릭 시 다시 원래 위치로 복귀 */
+}
+
+
+/*==========================================*/
+.bookmark-checkbox {
+    display: inline-block;
+}
+
+.bookmark-checkbox__input {
+    display: none;
+}
+
+.bookmark-checkbox__label {
+    cursor: pointer;
+}
+
+.bookmark-checkbox__icon {
+    width: 2em;
+    height: 2em;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke 0.3s, fill 0.3s;
+}
+
+.bookmark-checkbox__icon-back {
+    stroke: #FFFFFF;
+    transition: transform 0.3s;
+}
+
+.bookmark-checkbox__icon-check {
+    stroke: #fff;
+    stroke-dasharray: 16;
+    stroke-dashoffset: 16;
+    transition: stroke-dashoffset 0.3s, transform 0.3s;
+    transform: translateX(2px);
+}
+
+.bookmark-checkbox__input:checked
++ .bookmark-checkbox__label
+.bookmark-checkbox__icon {
+    fill: #ff5a5f;
+}
+
+.bookmark-checkbox__input:checked
++ .bookmark-checkbox__label
+.bookmark-checkbox__icon-back {
+    stroke: #ff5a5f;
+    transform: scale(1.1);
+    animation: bookmark-pop 0.4s ease;
+}
+
+.bookmark-checkbox__input:checked
++ .bookmark-checkbox__label
+.bookmark-checkbox__icon-check {
+    stroke-dashoffset: 0;
+    transition-delay: 0.2s;
+}
+
+@keyframes bookmark-pop {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+/*==========================================*/
+.modal-vd{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 650px;
+    color: var(--bs-modal-color);
+    pointer-events: auto;
+    background-color: var(--bs-modal-bg);
+    background-clip: padding-box;
+    border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
+    border-radius: var(--bs-modal-border-radius);
+    outline: 0;
+    left: 200px;
+    top: 150px;
+}
+
+.modal-dialog {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.modal-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+#commentForm {
+    margin-top: auto;
+}
+
+/*==========================================*/
+.input-comment {
+    border: none;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: #e8e8e8;
+    box-shadow: 20px 20px 60px #c5c5c5,
+    -20px -20px 60px #ffffff;
+    transition: 0.3s;
+}
+
+.input-comment:focus {
+    outline-color: #e8e8e8;
+    background: #e8e8e8;
+    box-shadow: inset 20px 20px 60px #c5c5c5,
+    inset -20px -20px 60px #ffffff;
+    transition: 0.3s;
+}

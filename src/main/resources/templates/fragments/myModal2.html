@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="myModal">
+    <div id="myModal2" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>UI 미리보기</h2>
+            <div class="container-modal">
+                <div class="left">
+                    <!-- 미리보기 위치 조정(임시) -->
+                    <div class="tiop" style="background-color: #1a1d20">
+                    <!-- UI 미리보기 예시 -->
+                    <button class="button-b02" data-text="Awesome">
+                        <span class="actual-text">&nbsp;uiverse&nbsp;</span>
+                        <span aria-hidden="true" class="hover-text-b02">&nbsp;uiverse&nbsp;</span>
+                    </button>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="button-container">
+                        <button onclick="showContent('info3')" style="background-color:#FF2424;">HTML</button>
+                        <button onclick="showContent('info4')">CSS</button>
+                    </div>
+                    <div id="info3" class="content active">
+                        <h2 style="color:#FF2424">HTML Code</h2>
+                        <button class="copy-button" onclick="copyCode('htmlCode1')" style="background-color: #1a1d20">Copy HTML</button>
+                        <pre id="htmlCode1">
+&lt;div class="buttons"&gt;
+    &lt;button class="btn"&gt;
+        &lt;span&gt;&lt;/span&gt;
+        &lt;p data-start="uiverse" data-text="Awesome" data-title="uiverse"&gt;uiverse&lt;/p&gt;
+    &lt;/button&gt;
+&lt;/div&gt;
+                        </pre>
+                    </div>
+                    <div id="info4" class="content">
+                        <h2 style="color:#007bff;">CSS Code</h2>
+                        <button class="copy-button" onclick="copyCode('cssCode1')" style="background-color: #1a1d20">Copy CSS</button>
+                        <pre id="cssCode1">
+/* button styling */
+.button {
+  --border-right: 6px;
+  --text-stroke-color: rgba(255,255,255,0.6);
+  --animation-color: #37FF8B;
+  --fs-size: 2em;
+  letter-spacing: 3px;
+  text-decoration: none;
+  font-size: var(--fs-size);
+  font-family: "Arial";
+  position: relative;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text-stroke-color);
+}
+/* this is the text, when you hover on button */
+.hover-text {
+  position: absolute;
+  box-sizing: border-box;
+  content: attr(data-text);
+  color: var(--animation-color);
+  width: 0%;
+  inset: 0;
+  border-right: var(--border-right) solid var(--animation-color);
+  overflow: hidden;
+  transition: 0.5s;
+  -webkit-text-stroke: 1px var(--animation-color);
+}
+/* hover */
+.button:hover .hover-text {
+  width: 100%;
+  filter: drop-shadow(0 0 23px var(--animation-color));
+}
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

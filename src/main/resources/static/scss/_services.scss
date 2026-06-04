@@ -1,0 +1,100 @@
+.newsletter-section {
+    // background-image: url("../images/ai-bg-2.jpg");
+    // background-position: top;
+    // background-repeat: no-repeat;
+    // background-size: cover;
+
+
+    form {
+        position: relative;
+
+
+        input {
+            padding: 20px;
+            box-shadow: none;
+            border-color: transparent;
+            background-color: rgba($primary, 0.9);
+            color: $light;
+
+            &::placeholder {
+                color: $light;
+            }
+
+            &:focus {
+                background-color: rgba($dark, 0.9);
+                border-color: $gray-800 !important;
+                color: $light;
+            }
+        }
+
+        a {
+            background-color: $danger;
+            display: inline-block;
+            padding: 8px 28px;
+            border-radius: 5px;
+            color: $white;
+            position: absolute;
+            right: 0;
+            font-size: 17px;
+        }
+    }
+}
+.fitness-services{
+    z-index: 1;
+    overflow: hidden;
+    .dot-img{
+        position: absolute;
+        top: -20%;
+        left: 0;
+        z-index: -1;
+    }
+    ul{
+        li{
+            margin: 10px 0;
+            font-size: 20px;
+        }
+    }
+}
+
+.video-section{
+    background-image: url("../images/Untitled-design-_62_.webp");
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 300px 0;
+    .icon{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 80px;
+        width: 80px;
+        background-color: rgba($light , 0.2);
+        border-radius: 50%;
+        margin: 0 auto;
+    }
+}
+.health-services{
+    .heart-reading{
+        position: absolute;
+        top: 57%;
+        left: 43%;
+    }
+    ul{
+        li{
+            font-size: 20px;
+            margin: 16px 0;
+        }
+    }
+}
+.health-features{
+    .ai-rate{
+        position: absolute;
+        top: 20%;
+        right: 2%;
+        max-width: 40% !important;
+        @media (max-width:991px) {
+            display: none;
+            
+        }
+    }
+}

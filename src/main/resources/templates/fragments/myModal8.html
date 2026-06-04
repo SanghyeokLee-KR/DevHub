@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="myModal">
+    <div id="myModal8" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>UI 미리보기</h2>
+            <div class="container-modal">
+                <div class="left">
+                    <!-- 미리보기 위치 조정(임시) -->
+                    <div class="tiop">
+                        <!-- UI 미리보기 예시 -->
+                        <div class="lod-loader">
+                            <div data-glitch="Loading..." class="glitch">Loading...</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="button-container">
+                        <!-- info~ 바꾸기 -->
+                        <button onclick="showContent('info15')" style="background-color:#FF2424;">HTML</button>
+                        <button onclick="showContent('info16')">CSS</button>
+                    </div>
+                    <!-- info~ 바꾸기 -->
+                    <div id="info15" class="content active">
+                        <h2 style="color:#FF2424">HTML Code</h2>
+                        <!-- pre id 숫자 증가시켜 -->
+                        <button class="copy-button" onclick="copyCode('htmlCode7')" style="background-color: #1a1d20">Copy HTML</button>
+                        <pre id="htmlCode7">
+&lt;div class="loader"&gt;
+   &lt;div data-glitch="Loading..." class="glitch"&gt;Loading...&lt;/div&gt;
+&lt;/div&gt;
+                        </pre>
+                    </div>
+                    <!-- info~ 바꾸기 -->
+                    <div id="info16" class="content">
+                        <h2 style="color:#007bff;">CSS Code</h2>
+                        <!-- pre id 숫자 증가시켜 -->
+                        <button class="copy-button" onclick="copyCode('cssCode7')" style="background-color: #1a1d20">Copy CSS</button>
+                        <pre id="cssCode7">
+.glitch {
+  position: relative;
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #fff;
+  letter-spacing: 5px;
+  z-index: 1;
+  animation: shift 1s ease-in-out infinite alternate;
+}
+
+.glitch:before,
+.glitch:after {
+  display: block;
+  content: attr(data-glitch);
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.8;
+}
+
+.glitch:before {
+  animation: glitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+  color: #8b00ff;
+  z-index: -1;
+}
+
+.glitch:after {
+  animation: glitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
+  color: #00e571;
+  z-index: -2;
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+
+  20% {
+    transform: translate(-3px, 3px);
+  }
+
+  40% {
+    transform: translate(-3px, -3px);
+  }
+
+  60% {
+    transform: translate(3px, 3px);
+  }
+
+  80% {
+    transform: translate(3px, -3px);
+  }
+
+  to {
+    transform: translate(0);
+  }
+}
+
+@keyframes shift {
+  0%, 40%, 44%, 58%, 61%, 65%, 69%, 73%, 100% {
+    transform: skewX(0deg);
+  }
+
+  41% {
+    transform: skewX(10deg);
+  }
+
+  42% {
+    transform: skewX(-10deg);
+  }
+
+  59% {
+    transform: skewX(40deg) skewY(10deg);
+  }
+
+  60% {
+    transform: skewX(-40deg) skewY(-10deg);
+  }
+
+  63% {
+    transform: skewX(10deg) skewY(-5deg);
+  }
+
+  70% {
+    transform: skewX(-50deg) skewY(-20deg);
+  }
+
+  71% {
+    transform: skewX(10deg) skewY(-10deg);
+  }
+}
+
+
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevHub 팀 상세보기</title>
+    <link rel="shortcut icon" type="images/x-icon" href="/images/favicon.svg">
+    <link rel="stylesheet" href="/libs/remixicon/fonts/remixicon.css">
+    <link rel="stylesheet" href="/libs/swiper/swiper-bundle.css">
+    <link rel="stylesheet" href="/libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <link rel="stylesheet" href="/css/header.css">
+
+    <style>
+        body {
+            background-image: url('/images/background/team board bg.webp');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-color: #292424;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .row-vd {
+            display: flex;
+        }
+
+        .wr-vd {
+            background-color: rgba(15, 0, 150, 0.5);
+            width: 400px;
+            height: 500px;
+            margin-right: 30px;
+            position: sticky;
+            top: 100px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: top 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .wr-img {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .wr-ve-btn {
+            display: flex;
+            justify-content: center;
+            margin-top: auto;
+        }
+
+        .p-text {
+            font-size: 16px;
+            color: #6c757d;
+        }
+
+        .job-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .job-info div {
+            width: 30%;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .job-info p {
+            margin: 0;
+        }
+
+        .job-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .job-details div {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+
+        .job-details span {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* 버튼 css */
+        .button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgb(20, 20, 20);
+            border: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+            cursor: pointer;
+            transition-duration: .3s;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .svgIcon {
+            width: 12px;
+            transition-duration: .3s;
+        }
+
+        .svgIcon path {
+            fill: white;
+        }
+
+        .button:hover {
+            width: 140px;
+            border-radius: 50px;
+            transition-duration: .3s;
+            align-items: center;
+        }
+
+        .button:hover .svgIcon {
+            width: 50px;
+            transition-duration: .3s;
+            transform: translateY(60%);
+        }
+
+        .button::before {
+            position: absolute;
+            top: -20px;
+            content: attr(data-text);
+            color: white;
+            transition-duration: .3s;
+            font-size: 2px;
+        }
+
+        .button:hover::before {
+            font-size: 13px;
+            opacity: 1;
+            transform: translateY(30px);
+            transition-duration: .3s;
+        }
+
+        .message-btn:hover {
+            background-color: rgb(60, 80, 255); /* 파란색 */
+        }
+
+        .resume-btn:hover {
+            background-color: rgb(165, 80, 255); /* 보라색 */
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap; /* 줄 바꿈과 공백을 유지 */
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbarCollapse">
+<!-- 네비게이션 바 시작 -->
+<th:block th:replace="~{body/header :: header}"></th:block>
+<!-- 네비게이션 바 끝 -->
+
+<section class="section" style="width: 100%; background-color: rgba(15, 0, 150, 0);">
+    <div class="container" style="margin-top: 80px;">
+        <div class="row-vd">
+            <a href="#"><!-- 작성자 ID를 보고 작성자 상세 정보를 보도록 하기 -->
+                <div class="wr-vd">
+                    <div class="wr-img">
+                        <!-- 작성자의 프로필 이미지를 보여줄 곳 -->
+                        <img th:src="@{|/profile/${project.PProfile}|}" style="width: 100px; height: 100px; border-radius: 50%;">
+                    </div>
+                    <div style="border-bottom: 1px solid white; margin-top: 20px;"></div>
+                    <div style="margin-top: 20px;">
+                        <!-- 작성자이름과 프로젝트 정보를 간단히 보여주도록 -->
+                        <p style="font-size: 18px; color: white;">작성자 : [[${project.PMWriter}]]</p>
+                        <p style="font-size: 14px; color: white;">팀이름 : [[${team.TName}]]</p>
+                        <p style="font-size: 14px; color: white;">기간 : [[${team.TDuration}]]</p>
+                        <p style="font-size: 14px; color: white;">기술 : [[${team.TSkill}]]</p>
+                        <p style="font-size: 14px; color: white;">인원 : [[${team.THCount}]]</p>
+                    </div>
+                    <div class="wr-ve-btn">
+                        <!-- 수정 버튼 : 눌러서 작성자에게 메세지 보내기 -->
+                        <a th:if="${session.loginId eq project.PMWriter}" th:href="@{/teamModifyForm/{PId}(PId=${project.PId})}" class="button message-btn" data-text="Modify">
+                            <svg viewBox="0 0 512 512" class="svgIcon">
+                                <path d="M257.6 8C119 8 8 119.2 8 256.4c0 60.9 23.5 117.1 62.4 159.8 1.1 1.2 1.9 2.6 2.3 4.2 4.8 17.8 12.3 35.6 22.1 51.6 3.5 5.8 9.1 10.5 15.5 13.5 2.9 1.3 6.1 1.8 9.2 1.8 2.6 0 5.3-.4 7.9-1.2 19.2-6.1 35.4-15.4 49.7-25.9 3.7-2.8 8.5-3.5 12.7-2 31.2 11.4 64.8 17.7 99.1 17.7 138.6 0 249.6-111.2 249.6-248.4C506.4 119.2 395.4 8 257.6 8zM423.4 342.6c-5.5 7.6-13.5 11.8-22.2 11.8H110.6c-8.7 0-16.7-4.2-22.2-11.8-5.6-7.6-7-17.1-3.8-25.8 6.4-16.7 20.2-31.1 36.4-42 16.2-10.9 34.8-18.3 53.3-23.5 18.5-5.2 37.7-9.4 57.4-12.5 19.6-3.1 39.8-5.7 60-9.2 20.3-3.4 40.6-7.6 61.2-13.4 20.6-5.7 40.9-14.2 60.2-24.6 19.3-10.4 37.4-23.4 54.2-37.9 4.2-3.6 7.1-8.1 8.9-13.1 2.9-7.5 1.8-15.9-2.9-22.4-4.6-6.5-11.9-10.4-19.8-10.4H88.6c-8 0-15.2 3.9-19.8 10.4-4.7 6.5-5.8 14.9-2.9 22.4 1.8 5 4.7 9.5 8.9 13.1 16.8 14.5 35 27.5 54.2 37.9 19.3 10.4 39.6 18.9 60.2 24.6 20.6 5.8 40.8 9.9 61.2 13.4 20.3 3.4 40.5 6.1 60 9.2 19.7 3.1 38.9 7.3 57.4 12.5 18.5 5.2 37.1 12.6 53.3 23.5 16.2 10.9 30 25.3 36.4 42 3.1 8.7 1.8 18.2-3.8 25.8z"/>
+                            </svg>
+                        </a>
+                        <!-- 이력서 버튼 : 눌러서 작성자에게 이력서 보내기 -->
+                        <a th:href="@{/teamResume/{PId}(PId=${project.PId})}" class="button resume-btn" data-text="Resume" data-bs-toggle="modal" data-bs-target="#resumeModal" style="margin-left: 20px;">
+                            <svg viewBox="0 0 384 512" class="svgIcon">
+                                <path d="M0 0h384v512H0z"/>
+                            </svg>
+                        </a>
+                        <!-- 삭제 버튼 : 눌러서 project 삭제 -->
+                        <a th:if="${session.loginId eq project.PMWriter}" th:href="@{/teamDelete/{PId}(PId=${project.PId})}" class="button resume-btn" data-text="Delete" style="margin-left: 20px;">
+                            <svg viewBox="0 0 384 512" class="svgIcon">
+                                <path d="M192 32A160 160 0 1,0 192 432A160 160 0 1,0 192 32Z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div style="border-bottom: 1px solid white; margin-top: 10px; margin-bottom: 10px;"></div>
+                </div>
+            </a>
+
+            <div style="background-color: rgba(0, 0, 0, 0.88); width: 1000px; padding: 20px;">
+                <!-- 팀 프로젝트 게시글 제목 -->
+                <h2 class="display-6 fw-bold text-light">[[${project.PName}]]</h2>
+                <div style="display: flex;">
+                    <!-- 팀 프로젝트 게시글 (프로젝트 타입은...) -->
+                    <p class="p-text">프로젝트 타입 : [[${project.PType}]] <span style="word-spacing: 30px;">| </span></p>
+                    <p class="p-text">조회수 : [[${project.PHit}]] <span style="word-spacing: 30px;">| </span></p>
+                    <p class="p-text">작성일 : [[${project.PDate}]]</p>
+                </div>
+                <div style="background-color: white; height: 1px;"></div>
+                <div style="color: #FFFFFF; font-size: 19px; text-decoration: underline;">
+                    <br/>
+                    <h5 class="modal-title fw-bold">채용 정보</h5><br/>
+                </div>
+                <div class="job-info">
+                    <!-- 팀 프로젝트 채용 정보 -->
+                    <div>
+                        <p>팀 이름</p>
+                        <p>[[${team.TName}]]</p>
+                    </div>
+                    <div>
+                        <p>근무일</p>
+                        <p>[[${team.TDuration}]]</p>
+                    </div>
+                    <div>
+                        <p>급여</p>
+                        <p>[[${team.TSalary}]]</p>
+                    </div>
+                </div>
+                <div class="job-details" style="color: white;">
+                    <!-- 팀 프로젝트 채용 (각 항목에 대한 db는 상의 해봐야 할듯) -->
+                    <div><span>필요경력 : </span>[[${team.TExperience}]]</div>
+                    <div><span>근무방식 : </span>[[${team.TWorkType}]]</div>
+                    <div><span>계약형태 : </span>[[${team.TContract}]]</div>
+                    <div><span>학력사항 : </span>[[${team.TEducation}]]</div>
+                    <div><span>급여지급일 : </span>[[${team.TPayday}]]</div>
+                    <div><span>보유기술 : </span>[[${team.TSkill}]]</div>
+                </div>
+                <div style="margin-top: 30px;">
+                    <div style="color: #FFFFFF; font-size: 19px; text-decoration: underline;">
+                        <br/>
+                        <h5 class="modal-title fw-bold">프로젝트 설명</h5><br/>
+                    </div>
+                    <div style="color: #FFFFFF; font-size: 19px;">[[${project.PContact}]]</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<th:block th:replace="~{body/footer :: footer}"></th:block>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script src="/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/libs/swiper/swiper-bundle.min.js"></script>
+<script src="/js/swiper.js"></script>
+<script type="module" src="/js/app.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script>
+    const wrVdElement = document.querySelector('.wr-vd');
+
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const maxScroll = document.body.scrollHeight - window.innerHeight;
+        const scrollRatio = scrollTop / maxScroll;
+
+        const r = 15 + (0 - 15) * scrollRatio;   // Red component
+        const g = 200 * scrollRatio;               // Green component (unchanged)
+        const b = 140 + (365 - 140) * scrollRatio; // Blue component
+        const alpha = 0.5 + 0.5 * scrollRatio;   // Alpha component
+
+        const newColor = `rgba(${r}, ${g}, ${b}, ${alpha})`;
+        wrVdElement.style.backgroundColor = newColor;
+    });
+</script>
+</body>
+</html>

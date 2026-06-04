@@ -1,0 +1,93 @@
+.navbar-custom {
+    background-color: transparent;
+}
+
+.navbar-nav .nav-item {
+    margin-right: 20px;
+}
+
+.nav-btn .nav-item {
+    margin-right: 10px;
+}
+
+.btn-primary {
+    background-color: #4e5c8a;
+    border-color: #4e5c8a;
+}
+
+.btn-secondary {
+    background-color: #3c4048;
+    border-color: #3c4048;
+}
+
+.dropdown-menu {
+    background-color: #343a40;
+    color: #fff;
+}
+
+.dropdown-item {
+    color: #fff;
+}
+
+.dropdown-item:hover {
+    background-color: #495057;
+}
+
+.point-box {
+    background-color: #3c4048 !important; /* 중요도를 높여 스타일 적용 */
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    color: #fff; /* 텍스트 색상을 흰색으로 설정 */
+}
+
+.point-box img {
+    margin-right: 5px;
+}
+
+.btn-outline-danger {
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+.badge {
+    font-size: 0.9rem;
+    padding: 0.5em 0.7em;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.signup-btn {
+    background-color: #E03E3E !important;
+    border-color: #E03E3E !important;
+}
+
+.badge.rounded-pill {
+    border-radius: 50rem;
+}
+
+.bg-danger {
+    background-color: #dc3545 !important;
+}
+
+.bg-secondary {
+    background-color: #6c757d !important;
+}
+
+.navbar-brand .logo {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand .logo i {
+    margin-right: 10px;
+}
+
+.rounded-circle {
+    border-radius: 50% !important;
+}
+
+

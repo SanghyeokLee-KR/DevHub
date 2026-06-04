@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevHub ChatBot</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.svg">
+    <link rel="stylesheet" href="/libs/remixicon/fonts/remixicon.css">
+    <link rel="stylesheet" href="/libs/swiper/swiper-bundle.css">
+    <link rel="stylesheet" href="/libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/aiChat/aiChat.css">
+
+</head>
+
+<!-- 헤더 바 시작 -->
+<th:block th:replace="~{body/header :: header}"></th:block>
+<!-- 헤더 바 끝 -->
+
+<body data-bs-spy="scroll" data-bs-target="#navbarCollapse">
+
+<!-- 첫 번째 컨테이너 -->
+<div id="info-container" class="info-container active">
+    <div class="content">
+        <div class="logo">
+            <img src="/images/favicon.svg" alt="Logo">
+        </div>
+        <div class="example-messages">
+            <div class="example-message" onclick="sendExampleMessage('DevHub는 어떤 홈페이지인가요?')">DevHub는 어떤 홈페이지인가요?</div>
+            <div class="example-message" onclick="sendExampleMessage('DevHub에는 어떤 기능이 있나요?')">DevHub에는 어떤 기능이 있나요?</div>
+            <div class="example-message" onclick="sendExampleMessage('포인트 충전 기록은 어디에 있나요?')">포인트 충전 기록은 어디에 있나요?</div>
+            <div class="example-message" onclick="sendExampleMessage('팀원중에 서종범에 대해서 알려주세요.')">팀원중에 서종범에 대해서 알려주세요.</div>
+        </div>
+    </div>
+    <div class="input-box">
+        <input type="text" id="info-text" placeholder="메세지 DevHub Bot">
+        <button onclick="sendInfoMessage()">입력</button>
+    </div>
+</div>
+
+<!-- 두 번째 컨테이너 -->
+<div id="chat-container" class="chat-container">
+    <h2>DevHub Bot</h2>
+    <!-- 사용자의 채팅 메시지와 봇의 응답을 표시할 영역 -->
+    <div id="chat-box" class="chat-box"></div>
+    <!-- 사용자가 메시지를 입력할 수 있는 입력 박스와 전송 버튼 -->
+    <div class="input-box">
+        <input type="text" id="user-input" placeholder="메세지 DevHub Bot">
+        <button onclick="sendMessage()">입력</button>
+    </div>
+</div>
+
+<!-- jQuery 및 스크립트 -->
+<script src="/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/libs/swiper/swiper-bundle.min.js"></script>
+<script src="/js/swiper.js"></script>
+<script type="module" src="/js/app.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.getElementById('info-container').classList.add('active');
+    });
+
+    function showChatContainer() {
+        const infoContainer = document.getElementById('info-container');
+        const chatContainer = document.getElementById('chat-container');
+        infoContainer.classList.remove('active');
+        chatContainer.classList.add('active');
+    }
+
+    function sendExampleMessage(message) {
+        showChatContainer();
+        sendMessageToBot(message);
+    }
+
+    async function sendMessage() {
+        const userInput = document.getElementById('user-input');
+        sendMessageToBot(userInput.value);
+        userInput.value = '';
+    }
+
+    async function sendInfoMessage() {
+        const infoText = document.getElementById('info-text');
+        showChatContainer();
+        sendMessageToBot(infoText.value);
+        infoText.value = '';
+    }
+
+    async function sendMessageToBot(message) {
+        const chatBox = document.getElementById('chat-box');
+
+        if (message.trim() === '') return;
+
+        // 사용자 메시지를 화면에 표시
+        chatBox.innerHTML += `<div class="chat-message user"><strong>You:</strong> ${message}</div>`;
+
+        try {
+            // 서버로 메시지 전송
+            const response = await fetch(`/chat?message=${encodeURIComponent(message)}`);
+            const responseData = await response.text();
+
+            // 봇 응답을 화면에 표시
+            chatBox.innerHTML += `<div class="chat-message bot"><strong>Bot:</strong> ${responseData}</div>`;
+        } catch (error) {
+            console.error('Error:', error);
+            chatBox.innerHTML += `<div class="chat-message bot"><strong>Bot:</strong> Error occurred</div>`;
+        }
+
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+</script>
+</body>
+
+</html>

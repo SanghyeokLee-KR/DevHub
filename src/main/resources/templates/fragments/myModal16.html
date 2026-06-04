@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="myModal">
+    <div id="myModal16" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>UI 미리보기</h2>
+            <div class="container-modal">
+                <div class="left">
+                    <!-- 미리보기 위치 조정(임시) -->
+                    <div class="tiop">
+                        <!-- UI 미리보기 예시 -->
+                        <input placeholder="Enter your text..." class="input-01" name="text" type="text">
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="button-container">
+                        <!-- info~ 바꾸기 -->
+                        <button onclick="showContent('info31')" style="background-color:#FF2424;">HTML</button>
+                        <button onclick="showContent('info32')">CSS</button>
+                    </div>
+                    <!-- info~ 바꾸기 -->
+                    <div id="info31" class="content active">
+                        <h2 style="color:#FF2424">HTML Code</h2>
+                        <!-- pre id 숫자 증가시켜 -->
+                        <button class="copy-button" onclick="copyCode('htmlCode15')" style="background-color: #1a1d20">Copy HTML</button>
+                        <pre id="htmlCode15">
+
+&lt;input placeholder=&quot;Enter your text...&quot; class=&quot;input&quot; name=&quot;text&quot; type=&quot;text&quot;&gt;
+
+            </pre>
+                    </div>
+                    <!-- info~ 바꾸기 -->
+                    <div id="info32" class="content">
+                        <h2 style="color:#007bff;">CSS Code</h2>
+                        <!-- pre id 숫자 증가시켜 -->
+                        <button class="copy-button" onclick="copyCode('cssCode15')" style="background-color: #1a1d20">Copy CSS</button>
+                        <pre id="cssCode15">
+.input {
+  background-color: #212121;
+  max-width: 190px;
+  height: 40px;
+  padding: 10px;
+  /* text-align: center; */
+  border: 2px solid white;
+  border-radius: 5px;
+  /* box-shadow: 3px 3px 2px rgb(249, 255, 85); */
+}
+
+.input:focus {
+  color: rgb(0, 255, 255);
+  background-color: #212121;
+  outline-color: rgb(0, 255, 255);
+  box-shadow: -3px -3px 15px rgb(0, 255, 255);
+  transition: .1s;
+  transition-property: box-shadow;
+}
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

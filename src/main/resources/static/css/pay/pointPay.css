@@ -1,0 +1,392 @@
+/* 기존 CSS */
+body {
+    margin-top: 30px; /* 헤더와 내용 사이 간격 조정 */
+    background-image: url('/images/background/shap.webp'); /* 배경 이미지 추가 */
+    background-size: cover; /* 배경 이미지가 전체를 덮도록 설정 */
+    background-repeat: no-repeat; /* 배경 이미지 반복 방지 */
+    background-color: #292424;
+    color: #333;
+    font-family: 'Arial', sans-serif;
+}
+
+#point-charge {
+    background-color: #333;
+    padding-top: 100px;
+    color: #fff;
+}
+
+#point-charge h2, #point-charge p, #point-charge label {
+    color: #fff;
+}
+
+.btn-danger {
+    background-color: #e52d27;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #d22b26;
+}
+
+.rp-charge-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.rp-charge-left, .rp-charge-right {
+    flex: 1 1 48%;
+    min-width: 300px;
+}
+
+.rp-charge-left img {
+    width: 80px;
+    margin-bottom: 20px;
+}
+
+.rp-charge-left h1 {
+    font-size: 24px;
+    color: #e52d27;
+    margin-bottom: 10px;
+}
+
+.rp-charge-left p {
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.rp-charge-left .email {
+    color: #888;
+    margin-bottom: 20px;
+}
+
+.rp-charge-left .charge-amount {
+    font-size: 24px;
+    color: #e52d27;
+}
+
+.rp-charge-left .charge-amount span {
+    font-weight: bold;
+}
+
+.rp-charge-right .info-text {
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.rp-charge-right .payment-amounts {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin-bottom: 20px;
+    scrollbar-width: thin;
+    scrollbar-color: #e52d27 #fff;
+}
+
+.rp-charge-right .payment-amounts .amount {
+    flex: 0 0 auto;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 5px 0;
+    min-width: 100px;
+}
+
+.rp-charge-right .payment-amounts .amount:hover,
+.rp-charge-right .payment-amounts .amount.selected {
+    border-color: #e52d27;
+    color: #e52d27;
+}
+
+.rp-charge-right .payment-methods {
+    display: flex;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.rp-charge-right .payment-methods button {
+    flex: 1;
+    border: none;
+    background-color: #f7f7f7;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.rp-charge-right .payment-methods button.selected {
+    background-color: #fff;
+    border-bottom: none;
+    border: 1px solid #e52d27;
+    color: #e52d27;
+}
+
+.rp-charge-right .payment-methods button:not(.selected) {
+    border-right: 1px solid #e0e0e0;
+}
+
+.rp-charge-right .payment-details {
+    width: 100%;
+    max-width: 640px;
+    height: 200px;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-top: none;
+}
+
+.rp-charge-right .payment-options {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.rp-charge-right .payment-options input[type="radio"] + label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: white; /* 하얀색 배경 추가 */
+    transition: background-color 0.3s ease;
+    border: 2px solid transparent; /* 테두리 초기화 */
+}
+
+.rp-charge-right .payment-options input[type="radio"]:checked + label {
+    background-color: white; /* 선택된 상태에서도 하얀색 유지 */
+}
+
+.rp-charge-right .payment-options label {
+    cursor: pointer;
+}
+
+.rp-charge-right .payment-options img {
+    width: 100px;
+    height: 50px;
+    object-fit: contain;
+}
+
+/* .policy-notice 클래스의 스타일 설정 */
+.policy-notice {
+    font-size: 12px; /* 폰트 크기를 12px로 설정 */
+    color: #888888; /* 텍스트 색상을 회색으로 설정 */
+    background-color: #f7f7f7; /* 배경색을 밝은 회색으로 설정 */
+    padding: 20px; /* 내부 여백을 20px로 설정 */
+    border: 1px solid #e0e0e0; /* 테두리를 연한 회색으로 설정 */
+    border-radius: 4px 4px 0 0; /* 테두리의 모서리를 둥글게 설정 (상단만 둥글게) */
+    width: 580px; /* 너비를 고정값으로 설정 */
+    height: 128px; /* 높이를 고정값으로 설정 */
+    margin-bottom: 0; /* 아래쪽 여백을 없애서 아래 요소와 붙게 설정 */
+    font-family: 'Nanum Gothic', sans-serif; /* 폰트를 'Nanum Gothic'으로 설정 */
+    display: flex; /* Flexbox를 사용하여 내부 요소를 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    text-align: left; /* 텍스트를 왼쪽 정렬 */
+}
+
+/* .policy-notice 내부 텍스트를 중앙 정렬하고, 텍스트 자체는 왼쪽 정렬 */
+.policy-notice p {
+    margin: 0; /* 기본 마진 제거 */
+    text-align: left; /* 텍스트를 왼쪽 정렬 */
+}
+
+/* .policy-text 클래스의 스타일 설정 */
+.policy-text {
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 12px;
+    color: #808080;
+    margin: 0;
+    text-align: left;
+}
+
+.agree-container {
+    display: flex;
+    align-items: center;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 11px;
+    color: #333;
+    margin-top: 0;
+}
+
+.agree-container input[type="checkbox"] {
+    display: none;
+}
+
+.agree-container label {
+    border: 1px solid #e0e0e0;
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 0 0 4px 4px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    color: #333;
+    font-size: 12px;
+}
+
+.agree-container label:before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.agree-container input[type="checkbox"]:checked + label:before {
+    content: '✔';
+    color: white;
+    background-color: #e52d27;
+    border-color: #e52d27;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.agree-container label span {
+    padding-left: 40px;
+}
+
+.rp-charge-right .submit-btn {
+    width: 100%;
+    max-width: 640px;
+    margin: 20px auto 0; /* 간격 조정 */
+    padding: 15px;
+    background-color: #e52d27;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.rp-charge-right .submit-btn:hover {
+    background-color: #d22b26;
+}
+
+/* 모달 스타일 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.phone-input-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.phone-input-container input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+}
+
+.phone-input-container button {
+    padding: 10px 20px;
+    background-color: #e52d27;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.phone-input-container button:hover {
+    background-color: #d22b26;
+}
+
+/* 스크롤바 스타일 */
+.rp-charge-right .payment-amounts::-webkit-scrollbar {
+    height: 8px;
+}
+
+.rp-charge-right .payment-amounts::-webkit-scrollbar-thumb {
+    background-color: #e52d27;
+    border-radius: 4px;
+}
+
+/* 탭 스타일 */
+.tab-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tab-container .tab {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab-container .tab:hover,
+.tab-container .tab.selected {
+    border-bottom: none;
+    background-color: #fff;
+    border: 2px solid #e52d27;
+    color: #e52d27;
+}
+
+.tab-container .tab + .tab {
+    margin-left: -1px;
+}

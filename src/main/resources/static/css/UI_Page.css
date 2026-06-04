@@ -1,0 +1,149 @@
+.container-modal {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px;
+}
+
+.container-01{
+    display: flex;
+    align-items: flex-end; /* 요소들을 수평으로 오른쪽 정렬 */
+}
+
+.left {
+    flex: 1;
+    background-color: #f0f0f0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.right {
+    flex: 1;
+    background-color: #e0e0e0;
+    padding: 20px;
+    box-sizing: border-box;
+    max-height: 500px; /* 원하는 최대 높이 설정 */
+    overflow-y: hidden;
+}
+
+.tiop {
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center;     /* 수직 중앙 정렬 */
+
+    /* 크기를 지정합니다 */
+    width: 100%;             /* 부모 요소의 너비에 맞춤 */
+    height: 100%;            /* 부모 요소의 높이에 맞춤 */
+
+    /* 추가 스타일링 (예: 배경색, 경계선 등) */
+    background-color: #fff;  /* 배경색을 흰색으로 설정 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+
+    transition: background-color 0.3s; /* 배경색 변경 애니메이션 */
+}
+
+
+.button-container {
+    margin-bottom: 20px;
+}
+
+.button-container button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.button-container button:hover {
+    background-color: #0056b3;
+}
+
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+.content {
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background-color: #f4f4f4;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: auto;
+    max-height: 300px;
+}
+
+.copy-button {
+    padding: 5px 10px;
+    cursor: pointer;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.copy-button:hover {
+    background-color: #0056b3;
+}
+
+.uiDiv {
+    display: flex; /* Flexbox 레이아웃 사용 */
+    flex-wrap: wrap; /* 요소들을 줄바꿈하여 배열 */
+    width: 100%; /* 요소의 너비를 부모 요소의 90%로 설정 */
+    background-color: #111; /* 배경색을 어두운 갈색으로 설정 */
+    padding: 20px; /* 내부 여백을 20px로 설정 */
+    box-sizing: border-box; /* padding과 border를 width와 height에 포함시켜 계산 */
+}
+
+.box {
+    display: flex; /* Flexbox 사용 */
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    background-color: #1a1d20; /* 박스 배경색을 회색으로 설정 */
+    border: 5px solid #111; /* 검정색 테두리 */
+    width: 300px; /* 박스 너비를 100%로 설정 */
+    height: 180px; /* 박스 높이를 100px로 설정 */
+    position: relative; /* 부모 요소를 relative로 설정 */
+    overflow: hidden; /* 자식 요소가 넘칠 경우를 대비해서 overflow를 hidden으로 설정 */
+    cursor: pointer; /* 커서 설정 */
+}
+
+.box > div{
+    position: absolute; /* 내부 요소를 absolute로 설정하여 부모 요소에 대해 위치를 결정 */
+    top: 50%; /* 원하는 위치로 조정 */
+    left: 50%; /* 원하는 위치로 조정 */
+    transform: translate(-50%, -50%); /* 중�� 정렬 */
+}
+
+
+.hover-text1 {
+    display: none; /* 초기 상태에서 숨기기 */
+    position: absolute; /* 부모 요소 기준 절대 위치 */
+    color: rgba(0, 0, 0, 0.3); /* 반투명 회색 텍스트 */
+    font-size: 36px; /* 텍스트 크기 설정 */
+    font-weight: 600;
+}
+.box:hover .hover-text1 {
+    display: block; /* 마우스를 올렸을 때 보이도록 설정 */
+}
+
+.text-tn{
+    color: #f2e7c3;
+}

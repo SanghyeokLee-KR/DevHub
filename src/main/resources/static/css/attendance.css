@@ -1,0 +1,108 @@
+/* 기본 설정 */
+body {
+    font-family: "Ubuntu", sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+/* 캘린더 스타일 */
+#calendar {
+    max-width: 800px;
+    margin: 50px auto 0;
+    background-color: #fff; /* White background */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px; /* Add padding inside the calendar */
+    position: relative; /* Ensure position is relative for absolute positioning */
+}
+
+/* 출석 스탬프 이미지 스타일 */
+.attendance-stamp {
+    background-image: url(../images/stamp.png); /* 출석체크 도장 이미지 경로 설정 */
+    background-size: contain; /* 배경 이미지를 요소에 맞게 조정 */
+    background-repeat: no-repeat; /* 배경 이미지 반복 없음 */
+    background-position: center; /* 배경 이미지 중앙 정렬 */
+    color: transparent; /* 글자를 투명으로 설정하여 숨김 */
+    text-shadow: none; /* 글자 그림자 제거 */
+    width: 70px;
+    height: 70px;
+}
+
+/* 출석체크 버튼 스타일 */
+#attendanceButton {
+    position: absolute; /* Position button absolutely within the calendar */
+    bottom: 20px; /* Adjust bottom distance as needed */
+    right: 20px; /* Adjust right distance as needed */
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #007bff; /* Blue background */
+    color: #fff; /* White text color */
+    border: none; /* No border */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+#attendanceButton:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+/* Add styles for the attendance streak popup */
+.request-attendance {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.request-attendance .inner {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.request-attendance .inner .userdata {
+    margin-bottom: 10px;
+}
+
+.request-attendance .inner .count {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 5px;
+}
+
+.request-attendance .apply_btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.request-attendance .apply_btn:hover {
+    background-color: #0056b3;
+}
+
+/* Optional: Styling for FullCalendar */
+#calendar {
+    margin-top: 20px;
+}
+
+/* Optional: Styling for the attendance button */
+#attendance-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#attendance-button:hover {
+    background-color: #218838;
+}

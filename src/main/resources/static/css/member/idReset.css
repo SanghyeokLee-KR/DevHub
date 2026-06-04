@@ -1,0 +1,40 @@
+.fade-out {
+    animation: fadeOut 1s forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#verification-code-group {
+    display: none;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+#verification-code-group.show {
+    display: block;
+    opacity: 1;
+}
+
+#second-form-container {
+    display: none;
+}

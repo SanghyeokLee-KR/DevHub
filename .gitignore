@@ -1,0 +1,58 @@
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### 비밀 정보 (절대 커밋 금지) ###
+# 실제 비밀값 파일 (템플릿 .example 만 커밋)
+src/main/resources/application-secret.properties
+# 인증 키 폴더: 내용물은 무시하되 안내용 README 만 커밋
+src/main/resources/secret/*
+!src/main/resources/secret/README.md
+# 혹시 모를 키 파일 패턴 방어
+*-credentials.json
+**/devhub-fjly-*.json
+
+### JVM 크래시 덤프 (대용량/불필요) ###
+hs_err_pid*.log
+replay_pid*.log
+
+### 사용자 업로드 파일 (커밋하지 않음) ###
+/uploads/
+
+### 구 업로드 위치(현재 미사용·사용자 사진 PII) — 커밋하지 않음 ###
+src/main/resources/static/profile/
+src/main/resources/static/upload/

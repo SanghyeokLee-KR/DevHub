@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="myModal">
+    <div id="myModal20" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>UI 미리보기</h2>
+            <div class="container-modal">
+                <div class="left">
+                    <!-- 미리보기 위치 조정(임시) -->
+                    <div class="tiop">
+                        <!-- UI 미리보기 예시 -->
+                        <div class="group-05">
+                            <svg stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-05">
+                                <path d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" stroke-linejoin="round" stroke-linecap="round"></path>
+                            </svg>
+                            <input class="input-05" type="password" placeholder="password">
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="button-container">
+                        <!-- info~ 바꾸기 -->
+                        <button onclick="showContent('info39')" style="background-color:#FF2424;">HTML</button>
+                        <button onclick="showContent('info40')">CSS</button>
+                    </div>
+                    <!-- info~ 바꾸기 -->
+                    <div id="info39" class="content active">
+                        <h2 style="color:#FF2424">HTML Code</h2>
+                        <!-- pre id 숫자 증가시켜 -->
+                        <button class="copy-button" onclick="copyCode('htmlCode19')" style="background-color: #1a1d20">Copy HTML</button>
+                        <pre id="htmlCode19">
+
+&lt;div class="group"&gt;
+  &lt;svg stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon"&gt;
+    &lt;path d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" stroke-linejoin="round" stroke-linecap="round"&gt;&lt;/path&gt;
+  &lt;/svg&gt;
+  &lt;input class="input" type="password" placeholder="password"&gt;
+&lt;/div&gt;
+
+            </pre>
+                    </div>
+                    <!-- info~ 바꾸기 -->
+                    <div id="info40" class="content">
+                        <h2 style="color:#007bff;">CSS Code</h2>
+                        <!-- pre id 숫자 증가시켜 -->
+                        <button class="copy-button" onclick="copyCode('cssCode19')" style="background-color: #1a1d20">Copy CSS</button>
+                        <pre id="cssCode19">
+.group {
+  display: flex;
+  line-height: 30px;
+  align-items: center;
+  position: relative;
+  max-width: 200px;
+}
+
+.input {
+  width: 100%;
+  height: 45px;
+  line-height: 30px;
+  padding: 0 5rem;
+  padding-left: 3rem;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  outline: none;
+  background-color: #f8fafc;
+  color: #0d0c22;
+  transition: .5s ease;
+}
+
+.input::placeholder {
+  color: #94a3b8;
+}
+
+.input:focus, input:hover {
+  outline: none;
+  border-color: rgba(129, 140, 248);
+  background-color: #fff;
+  box-shadow: 0 0 0 5px rgb(129 140 248 / 30%);
+}
+
+.icon {
+  position: absolute;
+  left: 1rem;
+  fill: none;
+  width: 1rem;
+  height: 1rem;
+}
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

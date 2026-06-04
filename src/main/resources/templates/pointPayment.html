@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>포인트 충전</title>
+    <link href="/images/favicon.svg" rel="shortcut icon" type="image/x-icon">
+    <link href="/libs/remixicon/fonts/remixicon.css" rel="stylesheet">
+    <link href="/libs/swiper/swiper-bundle.css" rel="stylesheet">
+    <link href="/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.min.css" rel="stylesheet">
+    <link href="/css/header.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link href="/css/pay/pointPay.css" rel="stylesheet">
+
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbarCollapse">
+<!-- 헤더 바 시작 -->
+<th:block th:replace="body/header :: header"></th:block>
+<!-- 헤더 바 끝 -->
+
+<!-- RP 충전하기 섹션 -->
+<section class="section" id="rp-charge">
+    <div class="container rp-charge-section">
+        <div class="rp-charge-left">
+            <a class="navbar-caption fs-4 text-light ls-1 fw-bold" href="index">
+                <i class="ri-robot-2-fill text-danger fs-3 me-1"></i>Craft<b class="text-danger">AI</b>
+            </a>
+            <h1>Point 충전하기</h1>
+            <p>결제 알림 메일</p>
+            <p class="email">[[${session.loginMEmail}]]</p>
+            <p class="charge-amount">충전 예정 <span>+13,000P</span></p>
+        </div>
+        <div class="rp-charge-right">
+            <p class="info-text">DEVHUB Point 구매 창입니다.</p>
+            <div class="payment-amounts">
+                <div class="amount" data-points="480RP" data-price="4,900원">480RP<br> <span>4,900원</span></div>
+                <div class="amount" data-points="980RP" data-price="9,900원">980RP<br> <span>9,900원</span></div>
+                <div class="amount" data-points="1,425RP" data-price="14,000원">1,425RP<br> <span>14,000원</span></div>
+                <div class="amount" data-points="3,700RP" data-price="35,000원">3,700RP<br> <span>35,000원</span></div>
+                <div class="amount" data-points="7,200RP" data-price="65,000원">7,200RP<br> <span>65,000원</span></div>
+                <div class="amount" data-points="11,800RP" data-price="99,900원">11,800RP<br> <span>99,900원</span></div>
+                <div class="amount" data-points="25,000RP" data-price="199,000원">25,000RP<br> <span>199,000원</span>
+                </div>
+                <div class="amount" data-points="33,500RP" data-price="265,000원">33,500RP<br> <span>265,000원</span>
+                </div>
+                <div class="amount" data-points="60,200RP" data-price="469,000원">60,200RP<br> <span>469,000원</span>
+                </div>
+            </div>
+            <div class="tab-container">
+                <button class="tab selected" data-method="간편결제">간편결제</button>
+                <button class="tab" data-method="신용카드">신용카드</button>
+                <button class="tab" data-method="기타">기타</button>
+            </div>
+            <div class="payment-details">
+                <h2>결제하실 방식을 선택하세요.</h2>
+                <p id="paymentDescription">결제하실 방식을 선택하세요.</p>
+                <div class="payment-options" id="paymentOptions">
+                    <input checked id="toss" name="payment" type="radio" value="toss">
+                    <label for="toss"><img alt="Toss" height="60" src="images/payment/toss.png" width="60"></label>
+                    <input id="kakaopay" name="payment" type="radio" value="kakaopay">
+                    <label for="kakaopay"><img alt="KakaoPay" height="60" src="images/payment/kakao.png"
+                                               width="60"></label>
+                    <input id="naverpay" name="payment" type="radio" value="naverpay">
+                    <label for="naverpay"><img alt="paypalPay" height="60" src="images/payment/paypal.png"
+                                               width="60"></label>
+                    <input id="payco" name="payment" type="radio" value="payco">
+                    <label for="payco"><img alt="Payco" src="images/payment/payco.png"></label>
+                </div>
+            </div>
+            <div class="policy-notice" id="policyNotice">
+                <div id="policyText">
+                    <p style="font-family: 'Nanum Gothic', sans-serif; font-size: 12px; color: #808080;">
+                        RP충전은 Toss 앱이 설치되어 있어야만 결제 가능합니다.
+                        Toss서비스 이용을 위해서는 해당 서비스의 회원가입이 필요합니다.
+                        Toss는 휴대폰에서 간편하게 송금할 수 있는 (주)비바리퍼블리카의 서비스 입니다.</p>
+                </div>
+            </div>
+            <div class="agree-container">
+                <input id="agree" type="checkbox">
+                <label for="agree">
+                    <span>상품, 가격 및 유효기간을 확인하였으며, 계약 관련 고지 사항과 DEVHUB 가상 재화 정책 및 결제 진행에 동의합니다.</span>
+                </label>
+            </div>
+            <button class="submit-btn" id="finalPayButton" onclick="payment()">결제하기</button>
+        </div>
+    </div>
+</section>
+
+<!-- jQuery 및 스크립트 -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        let selectedPoints = '13,000P';
+        let selectedPrice = '99,000원';
+
+        // 금액 선택 처리
+        $('.rp-charge-right .payment-amounts .amount').click(function () {
+            $('.rp-charge-right .payment-amounts .amount').removeClass('selected');
+            $(this).addClass('selected');
+            selectedPoints = $(this).attr('data-points');
+            selectedPrice = $(this).attr('data-price');
+            $('.rp-charge-left .charge-amount span').text(selectedPoints);
+        });
+
+        // 결제 방법 탭 선택 처리
+        $('.rp-charge-right .tab-container .tab').click(function () {
+            $('.rp-charge-right .tab-container .tab').removeClass('selected');
+            $(this).addClass('selected');
+            let method = $(this).data('method');
+            $('.rp-charge-right .payment-details h2').text('결제하실 방식을 선택하세요.');
+            updatePaymentDetails(method);
+        });
+
+        // 결제 완료 버튼 클릭 처리
+        $('#finalPayButton').click(function () {
+            if ($('#agree').is(':checked')) {
+                const selectedPayment = $('input[name="payment"]:checked').val();
+                if (selectedPayment) {
+                    updateModal(selectedPoints, selectedPrice);
+                    $('#phoneModal').show();
+                } else {
+                    alert('결제 방법을 선택하세요.');
+                }
+            } else {
+                alert("결제 진행에 동의해야 합니다.");
+            }
+        });
+        function updateModal(points, price) {
+            // 여기서 모달 업데이트 로직을 구현
+            // 예시: 모달에 선택된 포인트와 가격을 업데이트하는 코드
+            $('#modalPoints').text(points);
+            $('#modalPrice').text(price);
+        }
+        // 결제 세부사항 업데이트 함수
+        function updatePaymentDetails(method) {
+            let paymentOptions = '';
+            let policyNotice = '';
+            switch (method) {
+                case '간편결제':
+                    paymentOptions = `
+                    <input type="radio" id="toss" name="payment" value="toss" checked>
+                    <label for="toss"><img src="/images/payment/toss.png" alt="Toss"></label>
+                    <input type="radio" id="kakaopay" name="payment" value="kakaopay">
+                    <label for="kakaopay"><img src="/images/payment/kakao.png" alt="KakaoPay"></label>
+                    <input type="radio" id="naverpay" name="payment" value="naverpay">
+                    <label for="naverpay"><img src="/images/payment/naver.png" alt="NaverPay"></label>
+                    <input type="radio" id="paypal" name="payment" value="paypal">
+                    <label for="paypal"><img src="/images/payment/paypal.png" alt="Paypal"></label>`;
+                    policyNotice = `<p style="font-family: 'Nanum Gothic', sans-serif; font-size: 12px; color: #808080;">RP충전은 Toss 앱이 설치되어 있어야만 결제 가능합니다.
+                Toss서비스 이용을 위해서는 해당 서비스의 회원가입이 필요합니다.
+                Toss는 휴대폰에서 간편하게 송금할 수 있는 (주)비바리퍼블리카의 서비스 입니다.<p>`;
+                    break;
+                case '신용카드':
+                    paymentOptions = `
+                    <div class="payment-options">
+                         <label><input type="radio" name="payment" value="간편 카드 결제" checked> 간편 카드 결제 &nbsp;&nbsp;&nbsp;</label>
+                         <label><input type="radio" name="payment" value="일반 카드 결제"> 일반 카드 결제 </label>
+                    </div>`;
+                    policyNotice = `<p style="font-family: 'Nanum Gothic', sans-serif; font-size: 12px; color: #808080;">등록해둔 신용카드로 간편하게 결제 가능합니다.
+                결제 금액 제한은 각 카드사 정책을 따릅니다.
+                등록해둔 결제 수단의 관리는 다음 링크에서 가능합니다.</p>`;
+                    break;
+                case '기타':
+                    paymentOptions = `
+                     <div class="payment-options">
+                         <label><input type="radio" name="payment" value="계좌이체" checked> 계좌이체 &nbsp &nbsp</label>
+                         <label><input type="radio" name="payment" value="가상계좌"> 가상계좌 &nbsp &nbsp</label>
+                         <label><input type="radio" name="payment" value="컬쳐랜드상품권"> 컬쳐랜드 &nbsp &nbsp</label>
+                         <label><input type="radio" name="payment" value="해피머니상품권"> 해피머니 &nbsp &nbsp</label>
+                         <label><input type="radio" name="payment" value="도서문화상품권"> 도서문화 &nbsp &nbsp</label>
+                     </div>`;
+                    policyNotice = `<p style="font-family: 'Nanum Gothic', sans-serif; font-size: 12px; color: #808080;">실시간 계좌이체는 금융결제원의 BANKPAY를 이용합니다.
+                결제 금액은 즉시 계좌에서 이체됩니다.</p>`;
+                    break;
+                default:
+                    paymentOptions = '<p>결제 옵션을 선택하세요.</p>';
+            }
+            $('#paymentOptions').html(paymentOptions);
+            $('#policyText').html('<p>' + policyNotice.replace(/\n/g, '<br>') + '</p>');
+
+            // 라디오 버튼 변경 이벤트 처리
+            $('input[name="payment"]').change(function () {
+                var selectedPayment = $(this).val();
+                updatePolicyNotice(selectedPayment);
+            });
+        }
+
+        // 결제 정책 안내 업데이트 함수
+        function updatePolicyNotice(paymentMethod) {
+            let notice = '';
+            switch (paymentMethod) {
+                case 'toss':
+                    notice = `<p class="policy-text">
+            포인트 충전은 Toss 앱이 설치되어 있어야만 결제 가능합니다.<br>
+            Toss 서비스 이용을 위해서는 해당 서비스의 회원가입이 필요합니다.<br>
+            Toss는 휴대폰에서 간편하게 송금할 수 있는 (주)비바리퍼블리카의 서비스 입니다.
+        </p>`;
+                    break;
+                case 'kakaopay':
+                    notice = `<p class="policy-text">
+            결제를 위해서는 카카오톡 또는 카카오페이 모바일 앱이 필요합니다.<br>
+            카카오페이 고객센터 : 1644-7405
+        </p>`;
+                    break;
+                case 'naverpay':
+                    notice = `<p class="policy-text">
+            주문 변경 시 카드사 혜택 및 할부 적용 여부는 해당 카드사 정책에 따라 변경될 수 있습니다.<br>
+            네이버페이는 네이버ID로 별도 앱 설치 없이 카드 또는 계좌 정보를 등록하여 비밀번호로 결제할 수 있는 간편결제 서비스입니다.<br>
+            네이버페이 카드 간편결제는 카드사 별 무이자,청구할인 혜택을 받을 수 있습니다.
+        </p>`;
+                    break;
+                case 'paypal':
+                    notice = `<p class="policy-text">
+            휴대폰과 카드 명의자가 동일해야 결제 가능하며, 결제금액 제한은 각 카드사 정책을 따릅니다.<br>
+            사용 가능한 결제 수단은 결제화면 하단에서 확인할 수 있습니다.<br>
+            Paypal 관련 혜택은 Paypal 결제화면 내 안내를 통해 확인해주시기 바랍니다.
+        </p>`;
+                    break;
+                case '간편 카드 결제':
+                    notice = `<p class="policy-text">
+            등록해둔 신용카드로 간편하게 결제 가능합니다.<br>
+            결제 금액 제한은 각 카드사 정책을 따릅니다.<br>
+            등록해둔 결제 수단의 관리는 다음 링크에서 가능합니다.
+        </p>`;
+                    break;
+                case '일반 카드 결제':
+                    notice = `<p class="policy-text">
+            해당 카드에 따라 VISA 안심클릭,ISP,일반결제로 진행됩니다.<br>
+            이용요금은 '토스페이먼츠 주식회사'로 표시됩니다.<br>
+            타인의 카드를 동의 없이 무단으로 사용하면 형사처벌 받을 수 있습니다.
+        </p>`;
+                    break;
+                case '계좌이체':
+                    notice = `<p class="policy-text">
+            실시간 계좌이체는 금융결제원의 BANKPAY를 이용합니다.<br>
+            결제 금액은 즉시 계좌에서 이체됩니다.
+        </p>`;
+                    break;
+                case '가상계좌':
+                    notice = `<p class="policy-text">
+            신청이 완료되면 송금할 계좌번호, 계좌주명, 유효기간이 안내됩니다.<br>
+            가상계좌는 1주일간만 사용되는 임시 계좌이며, 이후에는 새로 계좌번호를 받으셔야 합니다.
+        </p>`;
+                    break;
+                case '컬쳐랜드상품권':
+                    notice = `<p class="policy-text">
+            컬쳐랜드 가입문의, 컬쳐캐시 충전, 사용내역은 홈페이지 혹은 고객센터를 통해 확인 가능합니다.<br>
+            컬쳐랜드 홈페이지 : www.cultureland.co.kr/ 고객센터 : 1577-2111
+        </p>`;
+                    break;
+                case '해피머니상품권':
+                    notice = `<p class="policy-text">
+            해피머니 가입문의, 해피캐시 충전, 사용내역은 홈페이지 혹은 고객센터를 통해 확인 가능합니다.<br>
+            해피머니 홈페이지 : www.happymoney.co.kr/ 고객센터 : 1588-5245
+        </p>`;
+                    break;
+                case '도서문화상품권':
+                    notice = `<p class="policy-text">
+            북앤라이프 가입문의, 북앤라이프 캐시 충전, 사용내역은 홈페이지 혹은 고객센터를 통해 확인 가능합니다.<br>
+            북앤라이프 홈페이지 : www.booknlife.com/ 고객센터 : 1544-5111
+        </p>`;
+                    break;
+                default:
+                    notice = '';
+            }
+            $('#policyText').html(notice);
+        }
+
+        // 기본 결제 방법 탭 및 라디오 버튼 설정
+        $('.tab-container .tab:first').trigger('click');
+        $('input[name="payment"]:checked').trigger('change');
+    });
+
+</script>
+<script src="/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/libs/swiper/swiper-bundle.min.js"></script>
+<script src="/js/swiper.js"></script>
+<script src="/js/app.js" type="module"></script>
+<!-- 포트원 결제 -->
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<!-- 포트원 결제 -->
+<script src="/js/payment.js"></script>
+</body>
+</html>

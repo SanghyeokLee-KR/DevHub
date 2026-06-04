@@ -1,0 +1,68 @@
+<header>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-custom sticky navbar-light sticky-light" id="navbar">
+        <div class="container">
+            <div class="navbar-brand logo">
+                <a class="navbar-caption fs-4 text-light ls-1 fw-bold" href="/index">
+                    <i class="ri-robot-2-fill text-danger fs-3 me-1"></i>Dev<b class="text-danger">Hub</b>
+                </a>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fw-bold fs-4"><i class="ri-menu-5-line"></i></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mx-auto" id="navbar-navlist">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index">홈</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">소개</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            서비스
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                            <li><a class="dropdown-item" href="/team">프로젝트</a></li>
+                            <li><a class="dropdown-item" href="/list">게시판</a></li>
+                            <li><a class="dropdown-item" href="/aiChat">채팅형 봇</a></li>
+                            <li><a class="dropdown-item" href="/services">오픈소스</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/attend">이벤트</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">연락처</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav nav-btn align-items-center">
+                    <li class="nav-item me-3" th:if="${session.loginId eq null}">
+                        <a class="btn btn-primary text-light signup-btn" href="signup">가입하기</a>
+                    </li>
+                    <li class="nav-item me-3" th:if="${session.loginId eq null}">
+                        <a class="btn btn-secondary text-light" href="login">로그인</a>
+                    </li>
+                    <li class="nav-item d-flex align-items-center" th:if="${session.loginId ne null}">
+                        <div class="point-box d-flex align-items-center me-3">
+                            <img src="/images/point/point.png" alt="포인트" width="20px" class="me-2">
+                            <span id="loginMPoint" class="text-light">[[${session.loginMPoint}]]</span>
+                        </div>
+                        <div class="dropdown">
+                            <a class="dropdown-toggle text-light me-2" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                [[${session.loginId}]]
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" th:href="@{/mView/{MId}(MId=${session.loginId})}">내정보</a></li>
+                                <li><a class="dropdown-item" href="/contact">문의하기</a></li>
+                                <li><a class="dropdown-item" href="/pay">포인트 충전</a></li>
+                                <li><a class="dropdown-item" href="/mLogout">로그아웃</a></li>
+                            </ul>
+                        </div>
+                        <img class="img-fluid rounded-circle ms-2" th:src="@{|/profile/${session.loginProfile}|}" width="40px" height="40px" style="object-fit: cover; border: 2px solid white;"/>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

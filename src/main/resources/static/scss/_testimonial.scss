@@ -1,0 +1,39 @@
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .testi-box{
+        background-color: $dark;
+        border: none !important;
+    }
+    .testi-content {
+        background-color: $primary !important;
+    }
+}
+.swiper-pagination-bullets .swiper-pagination-bullet {
+    width: 14px;
+    height: 5px;
+    border: none;
+    margin: 5px 7px;
+    border-radius: 20px;
+    background-color: $danger;
+}

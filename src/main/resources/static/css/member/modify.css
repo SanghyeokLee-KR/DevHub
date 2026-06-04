@@ -1,0 +1,55 @@
+.background-div {
+    background-image: url('/images/modify1.jpg'); /* 이미지 경로 설정 */
+    background-size: cover; /* 이미지가 div에 맞게 화면을 채우도록 설정 */
+    background-position: center; /* 이미지를 가운데 정렬 */
+    height: 790px; /* div의 높이 설정 */
+}
+
+.background-div_all {
+    background-image: url('/images/ai-ilend.jpg'); /* 배경 이미지 추가 */
+    background-size: cover; /* 이미지가 div에 맞게 화면을 채우도록 설정 */
+    background-position: center; /* 이미지를 가운데 정렬 */
+    position: relative;
+    overflow: hidden; /* 내부 콘텐츠를 넘어가는 부분을 숨김 */
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+.btn-check {
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.btn-check .ri-check-line {
+    font-size: 1.5rem;
+    color: gray;
+}
+
+.btn-check.valid .ri-check-line {
+    color: green;
+}
+
+.btn-check.invalid .ri-check-line {
+    color: red;
+}

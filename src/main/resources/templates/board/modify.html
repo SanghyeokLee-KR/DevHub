@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>DevHub - 게시글 작성</title>
+    <link href="/images/favicon.svg" rel="shortcut icon" type="image/x-icon">
+    <link href="/libs/remixicon/fonts/remixicon.css" rel="stylesheet">
+    <link href="/libs/swiper/swiper-bundle.css" rel="stylesheet">
+    <link href="/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.min.css" rel="stylesheet">
+    <link href="/css/header.css" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <style>
+        body {
+            margin-top: 200px;
+            background-image: url('/images/background/board bg.webp');
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-color: #292424;
+            color: #F3E9CB;
+            font-family: 'Arial', sans-serif;
+        }
+
+        header {
+            background-color: #000000;
+        }
+
+        footer {
+            margin-top: 250px;
+        }
+
+        .navbar-nav {
+            margin-right: 20px;
+        }
+
+        .code-block {
+            display: flex;
+            align-items: stretch;
+            margin-bottom: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            overflow: hidden;
+            width: 100%;
+            height: auto;
+        }
+
+        .code-label {
+            background-color: #4e5c8a;
+            color: #fff;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: auto;
+        }
+
+        .code-content {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            resize: none;
+            outline: none;
+            height: auto;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            width: 80px;
+            cursor: pointer;
+            height: auto;
+        }
+
+        .btn-secondary {
+            background-color: #3c4048;
+            border-color: #3c4048;
+        }
+
+        .dropdown-menu {
+            background-color: #ffffff;
+            color: #000;
+            width: 200px;
+        }
+
+        .dropdown-item {
+            color: #000;
+        }
+
+        .dropdown-item:hover,
+        .dropdown-item {
+            background-color: #e9ecef;
+            color: #000 !important;
+        }
+
+        .point-box img {
+            margin-right: 5px;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand .logo i {
+            margin-right: 10px;
+        }
+
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-control {
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #4e5c8a;
+        }
+
+        .btn-submit {
+            background-color: #fc00ff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            margin-right: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: #E100E1;
+        }
+
+        .btn-cancel {
+            background-color: #00dbde;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            margin-right: 10px;
+        }
+
+        .btn-cancel:hover {
+            background-color: #32DBDE;
+        }
+
+        .btn-reset {
+            background-color: #6c757d;
+            color: #291355;
+            border: 1px solid transparent; /* 경계선 설정 */
+            background-image: linear-gradient(white, white), linear-gradient(-45deg, #fc00ff 10%, #00dbde 90%);
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+            border-radius: 5px;
+            padding: 3px 3px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .btn-reset:hover {
+            background-color: #9360E4;
+        }
+
+        .coding-input-group span {
+            background-color: #6c757d;
+            color: #ffffff;
+        }
+
+        .coding-input-group textarea {
+            resize: vertical;
+        }
+
+        .dropdown-toggle::after {
+            display: none;
+        }
+
+        .dropdown-toggle:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        .dropdown-menu {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .dropdown-item i {
+            margin-right: 10px;
+        }
+
+        .dropdown-item,
+        .dropdown-item:hover {
+            background-color: #3b4a6b;
+            color: black !important;
+        }
+
+        .dropdown-item {
+            font-weight: 600;
+        }
+
+
+        .toolbar select,
+        .toolbar input[type="file"] {
+            margin-right: 10px;
+        }
+
+        .form-container .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .editor-toolbar select,
+        .editor-toolbar button,
+        .editor-toolbar input[type="file"] {
+            margin-right: 10px;
+        }
+
+        .editor-toolbar select {
+            height: 30px;
+        }
+
+        .editor-toolbar button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        #user-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .form-container .nickname {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #4e5c8a;
+            margin-bottom: 15px;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .input-group .dropdown {
+            flex: 0 0 auto;
+        }
+
+        .input-group .form-control {
+            flex: 1 1 auto;
+            margin-left: -1px;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .quill-container {
+            border: 1px solid #fff;
+        }
+
+        .quill-editor {
+            border: 1px solid #fff;
+            background-color: #fff;
+            color: #000;
+        }
+
+        .title-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .title-group .form-control {
+            flex: 1;
+        }
+
+        .title-group .dropdown,
+        .title-group .form-control,
+        .title-group .btn-reset {
+            height: calc(2.25rem + 2px); /* Ensure same height for all elements */
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        #nowType {
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+
+        .code-block {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .code-label {
+            background-color: #4e5c8a;
+            color: #fff;
+            padding: 10px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 70px;
+            height: 100%;
+        }
+
+        .code-content {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            resize: none;
+            outline: none;
+            height: 100%;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            height: 100%;
+        }
+
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbarCollapse">
+<!-- 헤더 바 시작 -->
+<th:block th:replace="body/header :: header"></th:block>
+<!-- 헤더 바 끝 -->
+
+<section class="container form-container">
+    <div id="user-info">
+        <div class="nickname" id="nickname">닉네임: <span id="userNickname"></span></div>
+        <div id="current-time">현재 시각: <span id="time"></span></div>
+    </div>
+    <div class="form-group title-group mb-3 align-items-start">
+        <div class="dropdown">
+            <!-- Dropdown menu for post type selection -->
+            <a aria-expanded="false" class="dropdown-toggle" data-bs-toggle="dropdown" role="button"
+               style="display: inline-block; width: auto; height: 38px; padding: 10px; background-color: #ffffff; color: #000000; text-align: center; border-radius: 5px 0 0 5px; text-decoration: none; border: 1px solid #ced4da; font-size: 1rem;">
+                <div id="nowType" style="display: flex; align-items: center; justify-content: center; height: 100%;">
+                    [[${board.BType}]]
+                </div>
+            </a>
+            <ul aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+                <li th:if="${session.loginId eq 'admin'}">
+                    <button class="dropdown-item" onclick="changeType('공지')">공지</button>
+                </li>
+                <li>
+                    <button class="dropdown-item" onclick="changeType('문의')">문의</button>
+                </li>
+                <li>
+                    <button class="dropdown-item" onclick="changeType('자유')">자유</button>
+                </li>
+                <li>
+                    <button class="dropdown-item" onclick="changeType('홍보')">홍보</button>
+                </li>
+                <li>
+                    <button class="dropdown-item" onclick="changeType('질문')">질문</button>
+                </li>
+            </ul>
+        </div>
+        <input class="form-control" id="BTitle" th:placeholder="${board.BTitle}" required style="border-left: 1px solid #ced4da; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 5px; border-bottom-right-radius: 5px;"
+               type="text"/>
+        <button class="btn btn-reset" onclick="resetForm()">초기화</button>
+    </div>
+    <div class="form-group mb-3 quill-container">
+        <div class="quill-editor" id="quillContainer">
+            <div id="quillEditor" style="height: 300px;"></div>
+        </div>
+    </div>
+    <div class="form-group input-group mb-3">
+        <input class="form-control" id="BFile" type="file"/>
+    </div>
+    <div class="form-group input-group mb-3">
+        <input class="form-control" id="code" oninput="updateModalTitle()" placeholder="추가할 프로그래밍 언어를 적어주세요."
+               type="text"/>
+        <button class="btn btn-secondary text-light" data-bs-target="#codeModal" data-bs-toggle="modal">코드 추가</button>
+    </div>
+    <div id="coding">
+        <!-- 여기에 JavaScript로 생성된 코드 블록이 추가됩니다 -->
+    </div>
+    <div class="button-group" id="insertBoard">
+        <button class="btn btn-submit" onclick="submitPost()">수정</button>
+        <button class="btn btn-cancel" onclick="cancelPost()">취소</button>
+    </div>
+</section>
+
+<!-- Code Modal -->
+<div aria-hidden="true" aria-labelledby="codeModalLabel" class="modal fade" id="codeModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="color: #14100e">
+            <div class="modal-header">
+                <h5 class="modal-title" id="codeModalLabel">추가할 프로그래밍 언어</h5>
+                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="modalCode">프로그래밍 언어</label>
+                    <input class="form-control" id="modalCode" placeholder="프로그래밍 언어를 입력해 주세요." readonly type="text">
+                </div>
+                <div class="form-group">
+                    <label for="modalCodeContent">내용</label>
+                    <textarea class="form-control" id="modalCodeContent" placeholder="내용을 입력해 주세요." rows="4"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">취소</button>
+                <button class="btn btn-primary" onclick="addOrUpdateCode()" type="button">저장</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 푸터 바 시작 -->
+<th:block th:replace="~{body/footer :: footer}"></th:block>
+<!-- 푸터 바 끝 -->
+</body>
+<!-- jQuery 라이브러리 추가 -->
+<script crossorigin="anonymous" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/libs/swiper/swiper-bundle.min.js"></script>
+<script src="/js/swiper.js"></script>
+<script src="/js/app.js" type="module"></script>
+<script>
+    let count = 0;
+    let bType;
+    let BNum;
+    let codingType = [];
+    let editIndex = -1;
+
+    $(()=> {
+        bType = `[[${board.BType}]]`;
+        quill.setText(`[[${board.BContent}]]`);
+        $.ajax({
+            type : "post",
+            url : "/codeCheck",
+            data : {
+                DDNum : `[[${board.BNum}]]`
+            },
+            dataType : "json",
+            success : (codeList) =>{
+                for(let i=0; i<Object.keys(codeList).length; i++) {
+                    let output = `
+                        <div class="code-block" id="code-block-${count}" style="display: flex; align-items: stretch; margin-bottom: 10px; border: 1px solid #ced4da; border-radius: 5px; overflow: hidden; width: 100%; height: auto;">
+                            <div class="code-label" style="background-color: #4e5c8a; color: #fff; font-weight: bold; display: flex; align-items: center; justify-content: center; width: 80px; height: auto;">${codeList[i].dname}</div>
+                            <textarea class="code-content form-control" id="coding${count}" rows="4" readonly style="flex: 1; padding: 10px; border: none; resize: none; outline: none; height: auto;">${codeList[i].dcode}</textarea>
+                            <button class="delete-btn" onclick="deleteCode(${count})" style="background-color: #dc3545; color: #fff; border: none; width: 80px; cursor: pointer; height: auto;">삭제</button>
+                        </div>`;
+
+                    codingType[count] = `${codeList[i].dname}`;
+                    count++;
+
+                    $('#coding').append(output);
+                }
+            }
+        });
+    });
+
+    function changeType(codeType) {
+        bType = codeType;
+        $('#nowType').empty()
+        $('#nowType').append(codeType);
+    }
+
+    function updateModalTitle() {
+        const codeInputValue = $('#code').val();
+        $('#codeModalLabel').text(codeInputValue ? codeInputValue : '추가할 프로그래밍 언어');
+        $('#modalCode').val(codeInputValue);
+    }
+
+    function openModal(index) {
+        editIndex = index;
+        $('#codeModalLabel').text('수정할 프로그래밍 언어');
+        $('#modalCode').val(codingType[index].language);
+        $('#modalCodeContent').val(codingType[index].content);
+        $('#codeModal').modal('show');
+    }
+
+    function addOrUpdateCode() {
+        let code = $('#modalCode').val();
+        let content = $('#modalCodeContent').val();
+
+        if (code && content) {
+            if (editIndex === -1) {
+                let output = `
+                <div class="code-block" id="code-block-${count}" style="display: flex; align-items: stretch; margin-bottom: 10px; border: 1px solid #ced4da; border-radius: 5px; overflow: hidden; width: 100%; height: auto;">
+                    <div class="code-label" style="background-color: #4e5c8a; color: #fff; font-weight: bold; display: flex; align-items: center; justify-content: center; width: 80px; height: auto;">${code}</div>
+                    <textarea class="code-content form-control" id="coding${count}" rows="4" readonly style="flex: 1; padding: 10px; border: none; resize: none; outline: none; height: auto;">${content}</textarea>
+                    <button class="delete-btn" onclick="deleteCode(${count})" style="background-color: #dc3545; color: #fff; border: none; width: 80px; cursor: pointer; height: auto;">삭제</button>
+                </div>`;
+
+                codingType[count] = code;
+                count++;
+
+                $('#coding').append(output);
+            } else {
+                codingType[editIndex] = {language: code, content: content};
+                $(`#code-block-${editIndex} .code-label`).text(code);
+                $(`#coding${editIndex}`).val(content);
+                editIndex = -1;
+            }
+
+            $('#codeModal').modal('hide');
+            $('#code').val('');
+            $('#modalCodeContent').val('');
+        } else {
+            alert("프로그래밍 언어와 내용을 모두 입력해 주세요.");
+        }
+    }
+
+    function deleteCode(index) {
+        $('#code-block-' + index).remove();
+        codingType[index] = null;
+    }
+
+    function submitPost() {
+        if (bType != null) {
+            let fileInput = document.getElementById('BFile');
+            let formData = new FormData();
+            formData.append('BNum', `[[${board.BNum}]]`);
+            formData.append('BWriter', `[[${board.BWriter}]]`);
+            formData.append('BFile', fileInput.files[0]);
+            formData.append('BFileName', `[[${board.BFileName}]]`);
+            formData.append('BTitle', $('#BTitle').val());
+            formData.append('BContent', quill.root.innerHTML.replace('<p>', '').replace('</p>', ''));  // Quill 에디터의 HTML 내용을 가져옴
+            formData.append('BHit', 0);
+            formData.append('BType', bType);
+
+            $.ajax({
+                type: "post",
+                url: "/bModify",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: () => {
+                    for (let i = 0; i < count; i++) {
+                        if (codingType[i] !== null) {
+                            formData = new FormData();
+                            formData.append('DDNum', `[[${board.BNum}]]`);
+                            formData.append('DName', codingType[i]);
+                            formData.append('DCode', $('#coding' + i).val());
+
+                            $.ajax({
+                                type: "post",
+                                url: "/insertWrite",
+                                data: formData,
+                                contentType: false,
+                                processData: false,
+                                success: () => {
+                                    location.href="/list"
+                                },
+                                error: () => {
+                                    alert('특수 게시글 업로드 실패');
+                                }
+                            });
+                        }
+                    }
+                },
+                error: () => {
+                    alert('게시글 업로드 실패');
+                }
+            });
+
+
+        }
+    }
+
+    function updateCurrentTime() {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString();
+        document.getElementById('time').textContent = timeString;
+    }
+
+    function cancelPost() {
+        location.href = "/list";
+    }
+
+    function resetForm() {
+        $('#BTitle').val('');
+        quill.root.innerHTML = '';
+        $('#BFile').val('');
+        $('#code').val('');
+        $('#coding').empty();
+        count = 0;
+        codingType = [];
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const userNickname = '[[${session.loginId}]]';
+        document.getElementById('userNickname').textContent = userNickname;
+
+        updateCurrentTime();
+        setInterval(updateCurrentTime, 1000);
+    });
+
+    function selectPostType(type) {
+        const postTypes = document.querySelectorAll('.post-type');
+        postTypes.forEach(postType => {
+            postType.classList.remove('active');
+        });
+
+        const selectedType = Array.from(postTypes).find(postType => postType.textContent === type);
+        if (selectedType) {
+            selectedType.classList.add('active');
+        }
+    }
+
+    var quill = new Quill('#quillEditor', {
+        theme: 'snow',
+        modules: {
+            toolbar: [
+                [{'font': []}, {'size': []}],
+                ['bold', 'italic', 'underline', 'strike'],
+                [{'color': []}, {'background': []}],
+                [{'script': 'super'}, {'script': 'sub'}],
+                [{'header': '1'}, {'header': '2'}, 'blockquote', 'code-block'],
+                [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+                [{'direction': 'rtl'}, {'align': []}],
+                ['link', 'image', 'video'],
+                ['clean']
+            ]
+        }
+    });
+</script>
+</html>

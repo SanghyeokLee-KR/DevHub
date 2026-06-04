@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="myModal">
+    <div id="myModal35" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>UI 미리보기</h2>
+            <div class="container-modal">
+                <div class="left">
+                    <!-- 미리보기 위치 조정(임시) -->
+                    <div class="tiop">
+                        <!-- UI 미리보기 예시 -->
+                        <div id="cal-body-q14">
+                            <div class="input-q14">
+                                <input type="text">
+                            </div>
+                            <div style="padding-top: 40px;">
+
+                                <div class="buttons-q14">
+                                    <button>1</button>
+                                    <button>2</button>
+                                    <button>3</button>
+                                    <button>+</button>
+                                </div>
+                                <div class="buttons-q14">
+                                    <button>4</button>
+                                    <button>5</button>
+                                    <button>6</button>
+                                    <button>-</button>
+                                </div>
+                                <div class="buttons-q14">
+                                    <button>7</button>
+                                    <button>8</button>
+                                    <button>9</button>
+                                    <button>*</button>
+                                </div>
+                                <div class="buttons-q14">
+                                    <button>.</button>
+                                    <button>0</button>
+                                    <button style="width: 140px;">=</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="button-container">
+                        <!-- info~ 바꾸기 -->
+                        <button onclick="showContent('info69')" style="background-color:#FF2424;">HTML</button>
+                        <button onclick="showContent('info70')">CSS</button>
+                    </div>
+                    <!-- info~ 바꾸기 -->
+                    <div id="info69" class="content active">
+                        <h2 style="color:#FF2424">HTML Code</h2>
+                        <!-- pre id 숫자 증가시켜 -->
+                        <button class="copy-button" onclick="copyCode('htmlCode34')" style="background-color: #1a1d20">Copy HTML</button>
+                        <pre id="htmlCode34">
+&lt;div id="cal-body"&gt;
+  &lt;div class="input"&gt;
+    &lt;input type="text"&gt;
+  &lt;/div&gt;
+  &lt;div style="padding-top: 40px;"&gt;
+
+    &lt;div class="buttons"&gt;
+      &lt;button&gt;1&lt;/button&gt;
+      &lt;button&gt;2&lt;/button&gt;
+      &lt;button&gt;3&lt;/button&gt;
+      &lt;button&gt;+&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="buttons"&gt;
+      &lt;button&gt;4&lt;/button&gt;
+      &lt;button&gt;5&lt;/button&gt;
+      &lt;button&gt;6&lt;/button&gt;
+      &lt;button&gt;-&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="buttons"&gt;
+      &lt;button&gt;7&lt;/button&gt;
+      &lt;button&gt;8&lt;/button&gt;
+      &lt;button&gt;9&lt;/button&gt;
+      &lt;button&gt;*&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="buttons"&gt;
+      &lt;button&gt;.&lt;/button&gt;
+      &lt;button&gt;0&lt;/button&gt;
+      &lt;button style="width: 140px;"&gt;=&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+            </pre>
+                    </div>
+                    <!-- info~ 바꾸기 -->
+                    <div id="info70" class="content">
+                        <h2 style="color:#007bff;">CSS Code</h2>
+                        <!-- pre id 숫자 증가시켜 -->
+                        <button class="copy-button" onclick="copyCode('cssCode34')" style="background-color: #1a1d20">Copy CSS</button>
+                        <pre id="cssCode34">
+#cal-body {
+  width: 400px;
+  border-radius: 20px;
+  background: #dde1e7;
+  box-shadow: -5px -5px 9px rgba(255,255,255,0.45), 5px 5px 9px rgba(94,104,121,0.3);
+  padding: 45px;
+  scale: 0.6;
+}
+
+.input input {
+  height: 100px;
+  width: 100%;
+  border-radius: 10px;
+  background: #dde1e7;
+  box-shadow: inset -5px -5px 9px rgba(255,255,255,0.45), inset 5px 5px 9px rgba(94,104,121,0.3);
+  border: 0;
+  color: rgb(116, 116, 116);
+  font-size: 2.5rem;
+  padding: 0 30px;
+}
+
+.input input:focus {
+  outline: none;
+  background: #dde1e7;
+  box-shadow: inset -5px -5px 9px rgba(255,255,255,0.45), inset 5px 5px 9px rgba(94,104,121,0.3);
+}
+
+.buttons button {
+  cursor: pointer;
+  height: 60px;
+  width: 60px;
+  border: 0;
+  font-size: 2rem;
+  border-radius: 50px;
+  background: #dde1e7;
+  box-shadow: -5px -5px 9px rgba(255,255,255,0.45), 5px 5px 9px rgba(94,104,121,0.3);
+  color: rgb(137, 137, 137);
+}
+
+.buttons button:focus {
+  background: #dde1e7;
+  box-shadow: inset -5px -5px 9px rgba(255,255,255,0.45), inset 5px 5px 9px rgba(94,104,121,0.3);
+}
+
+.buttons {
+  padding-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

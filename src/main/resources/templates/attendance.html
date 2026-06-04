@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>DevHub 출석체크</title>
+    <!-- Include your CSS files -->
+    <link rel="stylesheet" th:href="@{/libs/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/libs/swiper/swiper-bundle.css}">
+    <link rel="stylesheet" th:href="@{/libs/remixicon/fonts/remixicon.css}">
+    <link rel="stylesheet" th:href="@{/css/style.min.css}">
+    <link href="/css/header.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/event/attendance.css">
+</head>
+<body>
+
+<!-- Include header -->
+<th:block th:replace="~{body/header :: header}"></th:block>
+
+<section class="section">
+    <div class="attendance-check">
+        <h1>출석체크하고 포인트 받자!</h1>
+        <div class="tip"> 매주 일요일은 무려<span class="highlight">100 Point</span> 를 연속 출석해서 포인트를 더 많이 받자.</div>
+        <div id="calendarContainer"></div>
+    </div>
+</section>
+
+<section class="section">
+    <h1>실시간 출석체크 현황</h1>
+    <div class="progress-bar">
+        <div class="progress" id="progressBar" style="width: 0%;"></div>
+    </div>
+    <div id="attendanceCount" style="margin-bottom: 20px;">이번 달 출석 일수: 0일</div>
+    <div class="milestones">
+        <div class="milestone">
+            <p>총 3일 달성</p>
+            <p class="points">100point</p>
+            <button>신청하기</button>
+        </div>
+        <div class="milestone">
+            <p>총 7일 달성</p>
+            <p class="points">500point</p>
+            <button>확인하기</button>
+        </div>
+        <div class="milestone">
+            <p>총 14일 달성</p>
+            <p class="points">1,000point</p>
+            <button>확인하기</button>
+        </div>
+        <div class="milestone">
+            <p>총 21일 달성</p>
+            <p class="points">2,000point</p>
+            <button>확인하기</button>
+        </div>
+        <div class="milestone">
+            <p>총 28일 달성</p>
+            <p class="points">5,000point</p>
+            <button>확인하기</button>
+        </div>
+    </div>
+</section>
+
+<!-- Include footer -->
+<th:block th:replace="~{body/footer :: footer}"></th:block>
+
+<!-- JavaScript and AJAX -->
+<script src="/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/libs/swiper/swiper-bundle.min.js"></script>
+<script src="/js/swiper.js"></script>
+<script src="/js/app.js" type="module"></script>
+<script crossorigin="anonymous" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script>
+    $(document).ready(function () {
+        // 각 달의 일 수 배열
+        const monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+        // 오늘 날짜 정보 가져오기
+        const today = new Date();
+
+        // 현재 연도
+        const currentYear = today.getFullYear();
+
+        // 현재 월 (0부터 시작)
+        const currentMonth = today.getMonth();
+
+        // 현재 일
+        const currentDate = today.getDate();
+
+        // 달력을 표시할 컨테이너 요소
+        const calendarContainer = $("#calendarContainer");
+
+        // 진행 상황을 표시할 진행 바 요소
+        const progressBar = $("#progressBar");
+
+        // 출석 일수를 표시할 요소
+        const attendanceCount = $("#attendanceCount");
+
+        // 로그인된 사용자 확인 (임시로 true 설정, 실제 구현에서는 서버에서 세션 확인 필요)
+        const loggedInUser = [[${session.loggedInUser}]]; // 임시로 true로 설정
+
+        // 서버에서 출석 일수를 가져오기 (AJAX 요청)
+        let attendanceDays = [];
+        $.ajax({
+            url: '/getAttendanceDays',
+            method: 'GET',
+            success: function (response) {
+                attendanceDays = response;
+                renderCalendar();
+                updateProgress();
+            },
+            error: function (error) {
+                console.error('출석 일수 가져오기 실패:', error);
+            }
+        });
+
+        // 달력을 렌더링하는 함수
+        function renderCalendar() {
+            // 달 섹션 생성
+            const monthSection = $("<div>").addClass("month-section");
+
+            // 달 제목 생성
+            const monthTitle = $("<div>").addClass("month-title").text(`${currentYear}년 ${currentMonth + 1}월 출석표`);
+
+            // 달력 생성
+            const calendar = $("<div>").addClass("calendar");
+
+            // 각 날짜에 대해 반복
+            for (let day = 1; day <= monthDays[currentMonth]; day++) {
+                // 일 수를 2자리 문자열로 변환
+                const dayStr = day.toString().padStart(2, '0');
+
+                // 월 수를 2자리 문자열로 변환
+                const monthStr = (currentMonth + 1).toString().padStart(2, '0');
+
+                // 날짜 문자열 생성 (YYYY/MM/DD 형식)
+                const dateStr = `${currentYear}/${monthStr}/${dayStr}`;
+
+                // 각 날짜 요소 생성
+                const dayDiv = $("<div>").addClass("day");
+
+                // 날짜 텍스트 요소 생성
+                const dateSpan = $("<span>").addClass("date").text(dateStr);
+
+                // 이미지 요소 생성 및 크기 설정
+                const img = $("<img>").css({width: "50px", height: "50px"});
+
+                // 현재 날짜 객체 생성
+                const date = new Date(currentYear, currentMonth, day);
+
+                // 일요일이면 100point 이미지, 아니면 10point 이미지 설정
+                if (date.getDay() === 0) {
+                    img.attr("src", "/images/point/100point.png");
+                } else {
+                    img.attr("src", "/images/point/10point.png");
+                }
+
+                // checkInButton에 인라인으로 id와 class 추가
+                const checkInButton = $("<button>").attr("id", `checkIn-${day}`).addClass("check-in").text("출석");
+
+                // 이미 출석된 날짜인 경우 완료 상태로 설정
+                if (attendanceDays.includes(dateStr)) {
+                    // 출석 완료 이미지로 변경 및 특수 효과 추가
+                    if (img.attr("src") === "/images/point/100point.png") {
+                        img.attr("src", "/images/point/100pointAT.png");
+                    } else {
+                        img.attr("src", "/images/point/10pointAT.png");
+                    }
+                    img.addClass("checked-in");
+
+                    // 버튼 텍스트를 "완료"로 변경하고 비활성화 시킴
+                    checkInButton.text("완료").css("background-color", "#808080").addClass("disabled").attr("disabled", true);
+                } else if (loggedInUser && date.toDateString() === today.toDateString()) {
+                    // 오늘 날짜와 비교하여 출석체크 가능 여부 결정
+                    checkInButton.removeClass("disabled").on("click", function () {
+                        // 출석되지 않은 날짜인 경우
+                        if (!attendanceDays.includes(dateStr)) {
+                            // 출석 일수 배열에 날짜 추가
+                            attendanceDays.push(dateStr);
+
+                            // 출석 완료 이미지로 변경 및 특수 효과 추가
+                            if (img.attr("src") === "/images/point/100point.png") {
+                                img.attr("src", "/images/point/100pointAT.png");
+                            } else {
+                                img.attr("src", "/images/point/10pointAT.png");
+                            }
+                            img.addClass("checked-in");
+
+                            // 버튼 텍스트를 "완료"로 변경하고 비활성화 시킴
+                            $(this).text("완료").css("background-color", "#808080").addClass("disabled").attr("disabled", true);
+
+                            // 일요일이면 100 포인트, 아니면 10 포인트 설정
+                            const points = date.getDay() === 0 ? 100 : 10;
+
+                            console.log(`dateStr :  ${dateStr}`)
+                            console.log(`points :  ${points}`)
+
+                            // AJAX 요청
+                            $.ajax({
+                                url: '/EventAtt',
+                                method: 'POST',
+                                data: {
+                                    IDATE: dateStr,
+                                    POINTS: points,
+                                },
+                                success: function (response) {
+                                    console.log('출석체크 성공:', response);
+                                    updateProgress();
+                                },
+                                error: function (error) {
+                                    console.error('출석체크 실패:', error);
+                                }
+                            });
+                        }
+                    });
+                } else {
+                    // 출석체크 불가능한 날짜의 경우 버튼을 비활성화함
+                    checkInButton.addClass("disabled").attr("disabled", true);
+                }
+
+                // 날짜 요소에 하위 요소 추가
+                dayDiv.append(dateSpan);
+                dayDiv.append(img);
+                dayDiv.append(checkInButton);
+                // 달력 요소에 날짜 요소 추가
+                calendar.append(dayDiv);
+            }
+
+            // 달 섹션에 달 제목과 달력 요소 추가
+            monthSection.append(monthTitle);
+            monthSection.append(calendar);
+            // 달력 컨테이너에 달 섹션 추가
+            calendarContainer.append(monthSection);
+        }
+
+        // 진행 상황 업데이트 함수
+        function updateProgress() {
+            // 해당 월의 총 일수
+            const daysInMonth = monthDays[currentMonth];
+
+            // 출석한 일수
+            const attendedDays = attendanceDays.length;
+
+            // 진행률 계산
+            const percentage = (attendedDays / daysInMonth) * 100;
+
+            // 진행 바 너비 업데이트
+            progressBar.css("width", `${percentage}%`);
+
+            // 출석 일수 텍스트 업데이트
+            attendanceCount.text(`이번 달 출석 일수: ${attendedDays}일`);
+        }
+    });
+</script>
+
+</body>
+</html>

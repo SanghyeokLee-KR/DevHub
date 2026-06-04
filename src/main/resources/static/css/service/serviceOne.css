@@ -1,0 +1,72 @@
+body{
+    background-color: #111;
+    overflow-x: hidden;
+}
+
+.btn-st {
+    width: 160px;
+    height: 50px;
+    font-size: 30px;
+    margin: 30px;
+    background-image: linear-gradient(to right, #dc3545 0%, #fc9da7 0%, #f8a5ad 0%, #ffffff 0%, #ffffff 100%);
+}
+
+
+.text-container-09 {
+    display: none; /* 초기에는 모든 텍스트 숨김 */
+    font-size: 60px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.text-bg-all {
+    background-color: #171717;
+    padding: 20px; /* 컨테이너 주변에 여백 추가 */
+}
+
+.text-bg-all > div {
+    position: relative;
+    top: 20px;
+    left: 50px;
+}
+
+.menu-op {
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.social-icons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    margin-right: 106px; /* 오른쪽 공백 추가 */
+}
+
+.social-icons svg {
+    width: 24px;
+    height: 24px;
+    margin-left: 14px; /* 아이콘 간 간격 */
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px; /* 아이콘 사이의 간격 조절 */
+}
+
+.social-icons a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* 아이콘과 텍스트 사이의 간격 조절 */
+    text-decoration: none;
+    font-size: 14px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.social-icons a:hover {
+    transform: scale(1.1); /* 마우스를 올렸을 때 */
+}

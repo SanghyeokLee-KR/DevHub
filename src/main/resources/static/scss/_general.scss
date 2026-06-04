@@ -1,0 +1,147 @@
+/* 
+// 04.general
+*/
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Wallpoet&display=swap');
+
+body {
+    font-family: "Outfit", sans-serif;
+}
+
+a {
+    text-decoration: none;
+    font-size: 20px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+p {
+    font-size: 18px;
+    color: $gray-500;
+    font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-weight: 400 !important;
+}
+
+h6 {
+    font-size: 18px !important;
+    font-weight: 400;
+}
+
+.logo {
+    i {
+        font-weight: normal !important;
+    }
+}
+
+.form-control {
+    box-shadow: none !important;
+}
+
+.font-1 {
+    font-family: 'Wallpoet', sans-serif;
+    background-image:  linear-gradient(to right, $danger 0%, #fc9da7 30%, #f8a5ad 30%, #ffffff 73%, #ffffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.bg-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, #0e0500a6 0%, $primary 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.bg-overlay-2 {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, #0e050000 0%, $primary 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.section-title-border {
+    width: 50px;
+    height: 2px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: $success;
+}
+
+.title-sm {
+    span {
+        letter-spacing: 1px;
+        font-weight: 600;
+        font-size: 20px;
+        color: $light;
+    }
+}
+
+.shape {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    svg {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.text-line {
+    position: relative;
+    z-index: 2;
+    padding: 0 10px;
+
+    &::after {
+        content: "";
+        background: rgba($danger, 0.2);
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 34%;
+        width: 100%;
+        z-index: -1;
+    }
+}
+.bg-danger-subtle{
+    background-color: rgba($danger , 0.2) !important;
+}
+.bg-primary-soft{
+    background-color: rgba($danger , 0.03) !important;
+}
+.badge{
+    padding: 5px 15px;
+    font-size: 14px;
+    color: $gray-400;
+    border-radius: 3px;
+}
+.card{
+    border: 1px solid $gray-800;
+    img{
+        border: 1px solid $gray-800;
+
+    }
+    .card-title{
+        color: $light;
+    }
+}
+

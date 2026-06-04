@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="myModal">
+  <div id="myModal9" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>UI 미리보기</h2>
+      <div class="container-modal">
+        <div class="left">
+          <!-- 미리보기 위치 조정(임시) -->
+          <div class="tiop" style="background-color: #1a1d20">
+            <!-- UI 미리보기 예시 -->
+            <span class="snow-loader"  style="background-color: #1a1d20"></span>
+          </div>
+        </div>
+        <div class="right">
+          <div class="button-container">
+            <!-- info~ 바꾸기 -->
+            <button onclick="showContent('info17')" style="background-color:#FF2424;">HTML</button>
+            <button onclick="showContent('info18')">CSS</button>
+          </div>
+          <!-- info~ 바꾸기 -->
+          <div id="info17" class="content active">
+            <h2 style="color:#FF2424">HTML Code</h2>
+            <!-- pre id 숫자 증가시켜 -->
+            <button class="copy-button" onclick="copyCode('htmlCode8')" style="background-color: #1a1d20">Copy HTML</button>
+            <pre id="htmlCode8">
+
+&lt;span class="loader"&gt;&lt;/span&gt;
+
+            </pre>
+          </div>
+          <!-- info~ 바꾸기 -->
+          <div id="info18" class="content">
+            <h2 style="color:#007bff;">CSS Code</h2>
+            <!-- pre id 숫자 증가시켜 -->
+            <button class="copy-button" onclick="copyCode('cssCode8')" style="background-color: #1a1d20">Copy CSS</button>
+            <pre id="cssCode8">
+.loader {
+  display: block;
+  width: 84px;
+  height: 84px;
+  position: relative;
+}
+
+.loader:before , .loader:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #FFF;
+  transform: translate(-50% , -100%)  scale(0);
+  animation: push_401 2s infinite linear;
+}
+
+.loader:after {
+  animation-delay: 1s;
+}
+
+@keyframes push_401 {
+  0% , 50% {
+    transform: translate(-50% , 0%)  scale(1)
+  }
+
+  100% {
+    transform: translate(-50%, -100%) scale(0)
+  }
+}
+                        </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

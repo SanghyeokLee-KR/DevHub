@@ -1,0 +1,98 @@
+/* .fade-out 클래스를 가진 요소에 서서히 사라지는 애니메이션을 적용 */
+.fade-out {
+    animation: fadeOut 1s forwards;
+}
+
+/* 서서히 사라지는 애니메이션 정의 */
+@keyframes fadeOut {
+    from {
+        opacity: 1; /* 시작할 때 완전히 불투명 */
+    }
+    to {
+        opacity: 0; /* 끝날 때 완전히 투명 */
+    }
+}
+
+/* .fade-in 클래스를 가진 요소에 서서히 나타나는 애니메이션을 적용 */
+.fade-in {
+    animation: fadeIn 1s forwards;
+}
+
+/* 서서히 나타나는 애니메이션 정의 */
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* 시작할 때 완전히 투명 */
+    }
+    to {
+        opacity: 1; /* 끝날 때 완전히 불투명 */
+    }
+}
+
+/* #verification-code-group ID를 가진 요소 숨기기 및 서서히 나타나는 트랜지션 정의 */
+#verification-code-group {
+    display: none;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+/* .show 클래스를 추가하면 요소를 표시하고 서서히 나타나게 함 */
+#verification-code-group.show {
+    display: block;
+    opacity: 1;
+}
+
+/* #second-form-container 및 #third-form-container ID를 가진 요소 숨기기 */
+#second-form-container,
+#third-form-container {
+    display: none;
+}
+
+/* .alertMessage 클래스를 가진 요소 숨기기 및 상단 여백 설정 */
+.alertMessage {
+    display: none;
+    margin-top: 1rem;
+}
+
+/* .valid-message 클래스를 가진 요소에 녹색 텍스트 색상 적용 */
+.valid-message {
+    color: green;
+}
+
+/* .error-message 클래스를 가진 요소에 빨간색 텍스트 색상 적용 */
+.error-message {
+    color: red;
+}
+
+/* .input-valid 클래스를 가진 요소에 파란색 테두리 색상 적용 */
+.input-valid {
+    border-color: blue;
+}
+
+/* .input-error 클래스를 가진 요소에 빨간색 테두리 색상 적용 */
+.input-error {
+    border-color: red;
+}
+
+/* .btn-check 클래스를 가진 버튼에 투명한 배경과 기본 스타일 제거 및 커서 변경 */
+.btn-check {
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+/* .btn-check 클래스 내 .ri-check-line 클래스에 아이콘 크기 및 회색 색상 적용 */
+.btn-check .ri-check-line {
+    font-size: 1.5rem;
+    color: gray;
+}
+
+/* .btn-check 클래스에 .valid 클래스가 추가된 경우 아이콘 색상을 녹색으로 변경 */
+.btn-check.valid .ri-check-line {
+    color: green;
+}
+
+/* .btn-check 클래스에 .invalid 클래스가 추가된 경우 아이콘 색상을 빨간색으로 변경 */
+.btn-check.invalid .ri-check-line {
+    color: red;
+}

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevHub 팀 프로젝트 수정</title>
+    <link rel="shortcut icon" type="images/x-icon" href="/images/favicon.svg">
+    <link rel="stylesheet" href="/libs/remixicon/fonts/remixicon.css">
+    <link rel="stylesheet" href="/libs/swiper/swiper-bundle.css">
+    <link rel="stylesheet" href="/libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.css">
+    <style>
+        body {
+            margin-top: 200px;
+            background-image: url('/images/robot.JPG');
+            background-size: 120%;
+            background-repeat: no-repeat;
+            background-color: #292424;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+        }
+        header {
+            background-color: #000000;
+        }
+        footer {
+            margin-top: 50px;
+        }
+        .dropdown-menu {
+            background-color: #ffffff;
+            color: #000;
+            width: 200px;
+        }
+        .dropdown-item {
+            color: #000;
+        }
+        .dropdown-item:hover,
+        .dropdown-item {
+            background-color: #e9ecef;
+            color: #000 !important;
+        }
+        .point-box img {
+            margin-right: 5px;
+        }
+        .navbar-brand .logo i {
+            margin-right: 10px;
+        }
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .form-control {
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #4e5c8a;
+        }
+        .btn-submit {
+            background-color: #4e5c8a;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            margin-right: 10px;
+        }
+        .btn-submit:hover {
+            background-color: #3b4a6b;
+        }
+        .btn-cancel {
+            background-color: #dc3545;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            margin-right: 10px;
+        }
+        .btn-cancel:hover {
+            background-color: #c82333;
+        }
+        .btn-reset {
+            background-color: #6c757d;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .btn-reset:hover {
+            background-color: #5a6268;
+        }
+        .coding-input-group span {
+            background-color: #6c757d;
+            color: #ffffff;
+        }
+        .coding-input-group textarea {
+            resize: vertical;
+        }
+        .dropdown-toggle::after {
+            display: none;
+        }
+        .dropdown-toggle:focus {
+            outline: none;
+            box-shadow: none;
+        }
+        .dropdown-menu {
+            width: 100%;
+            border-radius: 5px;
+        }
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+        }
+        .dropdown-item i {
+            margin-right: 10px;
+        }
+        .dropdown-item,
+        .dropdown-item:hover {
+            background-color: #3b4a6b;
+            color: black !important;
+        }
+        .dropdown-item {
+            font-weight: 600;
+        }
+        .toolbar select,
+        .toolbar input[type="file"] {
+            margin-right: 10px;
+        }
+        .form-container .form-group {
+            margin-bottom: 1rem;
+        }
+        .editor-toolbar select,
+        .editor-toolbar button,
+        .editor-toolbar input[type="file"] {
+            margin-right: 10px;
+        }
+        .editor-toolbar select {
+            height: 30px;
+        }
+        .editor-toolbar button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        #user-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .form-container .nickname {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #4e5c8a;
+            margin-bottom: 15px;
+        }
+        .input-group .dropdown {
+            flex: 0 0 auto;
+        }
+        .input-group .form-control {
+            flex: 1 1 auto;
+            margin-left: -1px;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .quill-container {
+            border: 1px solid #fff;
+        }
+        .quill-editor {
+            border: 1px solid #fff;
+            background-color: #fff;
+            color: #000;
+        }
+        .title-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .title-group .form-control {
+            flex: 1;
+        }
+        .title-group .dropdown,
+        .title-group .form-control,
+        .title-group .btn-reset {
+            height: calc(2.25rem + 2px); /* Ensure same height for all elements */
+        }
+        .button-group {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        #nowType {
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+        .job-details {
+            display: grid;
+            grid-template-columns: repeat(2, 2fr);
+            gap: 10px;
+        }
+        .job-details div {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+        .job-details span {
+            width: 75px;
+            text-align: left;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .input-tp {
+            border: 2px solid transparent;
+            width: 10em;
+            height: 2.5em;
+            padding-left: 0.8em;
+            outline: none;
+            overflow: hidden;
+            background-color: #F3F3F3;
+            border-radius: 10px;
+            transition: all 0.5s;
+            flex: 1;
+        }
+        .input-tp:hover,
+        .input-tp:focus {
+            border: 2px solid #4A9DEC;
+            box-shadow: 0px 0px 0px 7px rgb(74, 157, 236, 20%);
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbarCollapse">
+<!-- 네비게이션 바 시작 -->
+<th:block th:replace="~{body/header :: header}"></th:block>
+<!-- 네비게이션 바 끝 -->
+
+<section class="container form-container" style="margin-bottom: 150px;">
+    <form id="projectUpdate">
+        <div class="form-group title-group mb-3 align-items-start">
+            <div class="dropdown">
+                <!-- Dropdown menu for post type selection -->
+                <a aria-expanded="false" class="dropdown-toggle" data-bs-toggle="dropdown" role="button" style="display: inline-block; width: auto; height: 38px; padding: 10px; background-color: #ffffff; color: #000000; text-align: center; border-radius: 5px 0 0 5px; text-decoration: none; border: 1px solid #ced4da; font-size: 1rem;">
+                    <div id="nowType" style="display: flex; align-items: center; justify-content: center; height: 100%;">[[${project.PType}]]</div>
+                </a>
+                <ul aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" onclick="changeType('Back-and')">Back-end</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" onclick="changeType('Front-and')">Front-and</a></li>
+                    <li>
+                        <a class="dropdown-item" onclick="changeType('기타')">기타</a>
+                    </li>
+                </ul>
+            </div>
+            <input class="form-control" name="PName" th:value="${project.PName}" required type="text" style="border-left: 1px solid #ced4da; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 5px; border-bottom-right-radius: 5px;"/>
+            <input type="reset" class="btn btn-reset" value="초기화"/>
+        </div>
+
+        <!-- 팀 관련 항목 -->
+        <div>
+            <div class="job-details" style="color: black;">
+                <!-- 팀 프로젝트 채용 (각 항목에 대한 db는 상의 해봐야 할듯) -->
+                <div>
+                    <span>팀이름 : </span>
+                    <input class="input-tp" th:value="${team.TName}" name="TName"/>
+                </div>
+                <div>
+                    <span>기간 : </span>
+                    <input type="text" class="input-tp date-range" th:value="${team.TDuration}" name="TDuration"/>
+                </div>
+                <div>
+                    <span>급여 : </span>
+                    <input class="input-tp" th:value="${team.TSalary}" name="TSalary"/>
+                </div>
+                <div>
+                    <span>필요경력 : </span>
+                    <input class="input-tp" th:value="${team.TExperience}" name="TExperience"/>
+                </div>
+                <div>
+                    <span>근무방식 : </span>
+                    <input class="input-tp" th:value="${team.TWorkType}" name="TWorkType"/>
+                </div>
+                <div>
+                    <span>계약형태 : </span>
+                    <input class="input-tp" th:value="${team.TContract}" name="TContract"/>
+                </div>
+                <div>
+                    <span>학력사항 : </span>
+                    <input class="input-tp" th:value="${team.TEducation}" name="TEducation"/>
+                </div>
+                <div>
+                    <span>임금지급: </span>
+                    <input class="input-tp" th:value="${team.TPayday}" name="TPayday"/>
+                </div>
+                <div>
+                    <span>필요기술 : </span>
+                    <input class="input-tp" th:value="${team.TSkill}" name="TSkill"/>
+                </div>
+                <div>
+                    <span>인원수 : </span>
+                    <input class="input-tp" th:value="${team.THCount}" name="THCount"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group mb-3 quill-container">
+            <div id="quillContainer" class="quill-editor">
+                <div id="quillEditor" style="height: 300px;">
+                    <textarea rows="13px" cols="92px" name="PContact">[[${project.PContact}]]</textarea>
+                </div>
+            </div>
+        </div>
+
+        <div id="insertBoard" class="button-group">
+            <input type="submit" class="btn btn-submit" value="등록"/>
+        </div>
+    </form>
+</section>
+
+<th:block th:replace="~{body/footer :: footer}"></th:block>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script src="/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/libs/swiper/swiper-bundle.min.js"></script>
+<script src="/js/swiper.js"></script>
+<script type="module" src="/js/app.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.js"></script>
+<script>
+    let type;
+
+    function changeType(ttype) {
+        type = ttype;
+        $('#nowType').empty();
+        $('#nowType').append(ttype);
+    }
+
+    $(document).ready(function () {
+        // 날짜 범위 선택을 위한 datepicker 설정
+        $('.date-range').daterangepicker({
+            locale: {
+                format: 'YYYY-MM-DD'
+            },
+
+            autoApply: true
+        });
+
+        const teamForm = document.getElementById('projectUpdate');
+
+        teamForm.addEventListener('submit', function(event) {
+            // 기본 동작(페이지 새로고침)을 막습니다.
+            event.preventDefault();
+
+            // 폼 데이터 가져오기
+            let formData = new FormData(teamForm);
+            formData.append('TId', `[[${team.TId}]]`);
+            formData.append('TMId', `[[${session.loginId}]]`);
+
+            $.ajax({
+                type : "post",
+                url : "/insertTeam",
+                data : formData,
+                dataType : "text",
+                contentType: false,
+                processData: false,
+                success : (id) => {
+                    formData.append('PId', `[[${project.PId}]]`);
+                    formData.append('PTId', id);
+                    formData.append('PMWriter', `[[${session.loginId}]]`);
+                    formData.append('PProfile', `[[${session.loginProfile}]]`)
+                    formData.append('PHit', 0);
+                    formData.append('PType', type);
+                    formData.append('PEmail', `[[${session.loginMEmail}]]`);
+                    $.ajax({
+                        type : "post",
+                        url : "/insertProject",
+                        data : formData,
+                        contentType: false,
+                        processData: false,
+                        success : () => {
+                            alert('성공적으로 입력되었습니다.');
+                            location.href="/team";
+                        },
+                        error : () => {
+                            alert('insertProject 실패');
+                        }
+                    });
+                },
+                error : () => {
+                    alert('insertTeam 실패');
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

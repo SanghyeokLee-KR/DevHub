@@ -1,0 +1,124 @@
+/* 슬라이드 이미지 꽉차게 하는 css */
+.fit-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/*===================Animation======================*/
+.swiper {
+    width: 80%; /* 컨테이너 너비 설정 */
+    max-width: 800px; /* 최대 너비 설정 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+    border-radius: 10px; /* 테두리 둥글게 */
+    overflow: hidden; /* 오버플로우 숨김 */
+    margin: 0 auto; /* 중앙 정렬 */
+}
+
+/* 슬라이드 스타일 설정 */
+.swiper-slide {
+    display: flex; /* 콘텐츠 중앙 정렬 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    height: 300px; /* 슬라이드 높이 설정 */
+    background-color: #333; /* 배경색 설정 */
+}
+
+/* 이미지 스타일 설정 */
+.swiper-slide img {
+    max-width: 100%; /* 이미지 최대 너비 100% */
+    border-radius: 10px; /* 이미지 테두리 둥글게 */
+}
+
+/* 각 슬라이드의 애니메이션 딜레이 설정 */
+.swiper-slide:nth-child(1) {
+    animation-delay: 0.2s; /* 첫 번째 슬라이드 애니메이션 딜레이 */
+}
+
+.swiper-slide:nth-child(2) {
+    animation-delay: 0.4s; /* 두 번째 슬라이드 애니메이션 딜레이 */
+}
+
+.swiper-slide:nth-child(3) {
+    animation-delay: 0.6s; /* 세 번째 슬라이드 애니메이션 딜레이 */
+}
+
+.swiper-slide:nth-child(4) {
+    animation-delay: 0.8s; /* 네 번째 슬라이드 애니메이션 딜레이 */
+}
+
+.swiper-slide:nth-child(5) {
+    animation-delay: 1s; /* 다섯 번째 슬라이드 애니메이션 딜레이 */
+}
+
+.swiper-slide:nth-child(6) {
+    animation-delay: 1.2s; /* 여섯 번째 슬라이드 애니메이션 딜레이 */
+}
+
+/* 페이징 점 스타일 설정 */
+.swiper-pagination-bullet {
+    background-color: #fff; /* 점 색상 */
+}
+
+/* 기존 네비게이션 버튼 스타일 */
+.swiper-button-next,
+.swiper-button-prev {
+    color: #fff; /* 버튼 색상 */
+    opacity: 0;  /* 초기 상태에서 버튼이 보이지 않도록 설정 */
+    transition: opacity 0.3s ease; /* 버튼이 부드럽게 나타나도록 전환 설정 */
+}
+
+/* 마우스 호버 시 버튼이 나타나도록 설정 */
+.swiper:hover .swiper-button-next,
+.swiper:hover .swiper-button-prev {
+    opacity: 1;
+}
+
+/* 콘텐츠 영역 스타일 */
+.content {
+    text-align: center; /* 텍스트 중앙 정렬 */
+    padding: 20px; /* 패딩 설정 */
+}
+
+/* 제목 스타일 */
+.display-1 {
+    font-size: 3rem; /* 글자 크기 */
+    font-weight: bold; /* 글자 굵기 */
+    margin-bottom: 20px; /* 아래 여백 */
+}
+
+
+/* 텍스트 스타일 */
+.text-light {
+    color: gray; /* 글자 색상 */
+}
+
+/* 버튼 스타일 */
+.btn {
+    display: inline-block; /* 인라인 블록 요소 */
+    padding: 10px 20px; /* 패딩 설정 */
+    margin: 10px; /* 마진 설정 */
+    border-radius: 5px; /* 테두리 둥글게 */
+    text-decoration: none; /* 텍스트 밑줄 제거 */
+    color: #fff; /* 글자 색상 */
+}
+
+.btn-light {
+    background-color: #f8f9fa; /* 배경색 */
+    color: #000; /* 글자 색상 */
+}
+
+.btn-danger {
+    background-color: #dc3545; /* 배경색 */
+}
+
+/* footer 부분에 대한 애니메이션 효과 */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}

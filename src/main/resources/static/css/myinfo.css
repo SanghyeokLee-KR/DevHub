@@ -1,0 +1,50 @@
+@keyframes fadeInUp {
+    from {
+        opacity: 0; /* 시작할 때 투명도를 0으로 설정합니다. */
+        transform: translateY(20px); /* 시작할 때 요소를 아래로 20px 이동합니다. */
+    }
+    to {
+        opacity: 1; /* 끝날 때 투명도를 1로 설정합니다. */
+        transform: translateY(0); /* 끝날 때 요소를 원래 위치로 이동합니다. */
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 1s ease-out; /* fadeInUp 애니메이션을 1초 동안 ease-out 효과로 적용합니다. */
+}
+
+.pagination {
+    list-style-type: none; /* 목록 스타일을 없앱니다. */
+    display: flex; /* 플렉스 컨테이너로 설정하여 항목을 가로로 나열합니다. */
+    justify-content: center; /* 컨테이너 내에서 항목을 가운데 정렬합니다. */
+    margin-top: 20px; /* 상단에 20px의 여백을 추가합니다. */
+}
+
+.pagination li {
+    display: inline-block; /* 항목을 인라인 블록 요소로 설정합니다. */
+    margin-right: 5px; /* 항목 간에 5px의 오른쪽 여백을 추가합니다. */
+}
+
+.pagination li a,
+.pagination li span {
+    display: inline-block; /* 링크와 스팬을 인라인 블록 요소로 설정합니다. */
+    padding: 8px 12px; /* 패딩을 설정하여 내부 여백을 추가합니다. */
+    text-decoration: none; /* 텍스트 장식을 없앱니다. */
+    color: #333; /* 텍스트 색상을 설정합니다. */
+    border: 1px solid #ccc; /* 테두리를 설정합니다. */
+    border-radius: 3px; /* 테두리의 모서리를 둥글게 만듭니다. */
+    background-color: #fff; /* 배경 색상을 설정합니다. */
+    transition: background-color 0.3s; /* 배경 색상 전환에 0.3초의 시간을 설정합니다. */
+}
+
+.pagination li a:hover {
+    background-color: #f5f5f5; /* 호버 시 배경 색상을 변경합니다. */
+}
+
+.pagination li.active span {
+    background-color: #007bff; /* 활성화된 페이지의 배경 색상을 설정합니다. */
+    color: #fff; /* 활성화된 페이지의 텍스트 색상을 설정합니다. */
+    border-color: #007bff; /* 활성화된 페이지의 테두리 색상을 설정합니다. */
+}
+
+/*=============응후옌에=================*/

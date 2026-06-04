@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <link rel="stylesheet" href="libs/remixicon/fonts/remixicon.css">
+    <link rel="stylesheet" href="libs/swiper/swiper-bundle.css">
+    <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.min.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevHub 비밀번호 재설정</title>
+    <link rel="shortcut icon" type="images/x-icon" href="images/favicon.svg">
+    <link rel="stylesheet" href="/css/member/idReset.css">
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbarCollapse">
+<section class="section login-section">
+    <div class="container">
+        <div class="login-content py-5 px-2 rounded-4">
+            <div class="row align-items-center justify-content-evenly position-relative">
+                <div class="col-lg-5">
+                    <div class="card border-0 rounded-4">
+                        <div class="card-body p-lg-4 p-3">
+                            <!-- 첫 번째 폼 컨테이너 -->
+                            <div id="first-form-container">
+                                <div class="text-start mt-3 px-lg-4 px-2">
+                                    <div class="navbar-brand logo mb-3">
+                                        <a class="navbar-caption fs-4 text-dark ls-1 fw-bold" href="index"><i class="ri-robot-2-fill text-danger fs-3 me-1"></i>Dev<b class="text-danger">Hub</b></a>
+                                    </div>
+                                    <div class="login-title">
+                                        <h5 class="text-primary fw-semibold">비밀번호 재설정</h5>
+                                    </div>
+                                </div>
+                                <div class="p-4">
+                                    <div class="alert alert-warning text-center" id="alert-message" role="alert">
+                                        이메일 주소를 입력해주세요.
+                                    </div>
+                                    <form id="first-form">
+                                        <div class="form-group input-group">
+                                            <span class="input-group-text" id="basic-addon1"><i class="ri-mail-line"></i></span>
+                                            <input type="text" class="form-control" id="MId" placeholder="아이디 입력" required>
+                                        </div>
+                                        <div class="form-group input-group">
+                                            <span class="input-group-text" id="basic-addon6"><i class="ri-mail-line"></i></span>
+                                            <input type="email" class="form-control" id="email" placeholder="이메일 입력" required>
+                                            <button type="button" class="btn btn-secondary ms-2" id="send-code-btn">보내기</button>
+                                        </div>
+                                        <div class="form-group input-group mt-3" id="verification-code-group">
+                                            <div class="form-group input-group">
+                                                <span class="input-group-text" id="basic-addon2"><i class="ri-lock-line"></i></span>
+                                                <input type="text" class="form-control" id="verification-code" placeholder="인증번호 입력" required />
+                                            </div>
+                                        </div>
+                                        <div class="d-grid mt-3">
+                                            <button type="submit" class="btn btn-primary">비밀번호 재설정</button>
+                                        </div>
+                                    </form>
+                                    <p class="mt-4 text-center"><small>로그인 페이지로 돌아가기 <a href="login" class="text-primary fs-6">로그인!</a></small></p>
+                                </div>
+                            </div>
+
+                            <!-- 두 번째 폼 컨테이너 -->
+                            <div id="second-form-container" class="fade-in">
+                                <div class="text-start mt-3 px-lg-4 px-2">
+                                    <div class="navbar-brand logo mb-3">
+                                        <a class="navbar-caption fs-4 text-dark ls-1 fw-bold" href="index"><i class="ri-robot-2-fill text-danger fs-3 me-1"></i>Dev<b class="text-danger">Hub</b></a>
+                                    </div>
+                                    <div class="login-title">
+                                        <h5 class="text-primary fw-semibold">비밀번호 재설정</h5>
+                                    </div>
+                                </div>
+                                <div class="p-4">
+                                    <form id="second-form">
+                                        <div class="form-group input-group">
+                                            <span class="input-group-text" id="basic-addon3"><i class="ri-user-line"></i></span>
+                                            <input type="text" class="form-control" id="username" placeholder="아이디" readonly />
+                                        </div>
+                                        <div class="form-group input-group mt-3">
+                                            <span class="input-group-text" id="basic-addon4"><i class="ri-lock-line"></i></span>
+                                            <input type="password" class="form-control" id="new-password" placeholder="새 비밀번호 입력" required />
+                                        </div>
+                                        <div class="form-group input-group mt-3">
+                                            <span class="input-group-text" id="basic-addon5"><i class="ri-lock-line"></i></span>
+                                            <input type="password" class="form-control" id="confirm-password" placeholder="비밀번호 확인" required />
+                                        </div>
+                                        <div class="d-grid mt-3">
+                                            <button type="submit" class="btn btn-primary">비밀번호 재설정 완료</button>
+                                        </div>
+                                    </form>
+                                    <p class="mt-4 text-center"><small>로그인 페이지로 돌아가기 <a href="login" class="text-primary fs-6">로그인!</a></small></p>
+                                </div>
+                            </div>
+
+                            <div class="footer-copyright-2">
+                                <div class="copy-info text-center">
+                                    <div class="copy-info text-center text-muted">
+                                        ©
+                                        <script>
+                                            document.write(new Date().getFullYear())
+                                        </script> CraftAI - <a href="#" class="text-dark text-decoration-underline fs-6">김보겸과 아이들</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 카드 끝 -->
+                </div>
+                <div class="col-lg-5 text-start">
+                    <img src="images/login.png" alt="" class="img-fluid">
+                </div>
+            </div>
+            <!-- 행 끝 -->
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.lordicon.com/lordicon.js"></script>
+<script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="libs/swiper/swiper-bundle.min.js"></script>
+<script src="js/swiper.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="module" src="js/app.js"></script>
+<script>
+    let number;
+
+    $(document).ready(function () {
+        // 보내기 버튼 클릭 시
+        $('#send-code-btn').click(function () {
+            if($('#email').val() !== '') {
+                // 인증번호 입력 필드 표시
+                if ($(this).text() === '보내기' || $(this).text() === '재전송') {
+                    $.ajax({
+                        type : "post",
+                        url : "/passwordChange",
+                        data : {
+                            MEmail : $('#email').val()
+                        },
+                        dataType : "text",
+                        success : (cnum)=>{
+                            number = cnum;
+                        },
+                        error : ()=> {
+                            alert('인증번호 불러오기 실패');
+                        }
+                    });
+                    $('#alert-message').text('인증번호가 발송되었습니다. 이메일을 확인하세요.');
+                } else {
+                    $('#alert-message').text('인증번호가 재 발송되었습니다.');
+                }
+                $('#verification-code-group').addClass('show');
+                $(this).text('재전송');
+            } else {
+                alert('이메일을 입력해주세요.');
+            }
+        });
+
+        // 첫 번째 폼 제출 시
+        $('#first-form').submit(function (event) {
+            if(number === $('#verification-code').val()) {
+                event.preventDefault();
+                $('#first-form-container').addClass('fade-out');
+                setTimeout(function () {
+                    $('#first-form-container').hide();
+                    $('#second-form-container').addClass('show');
+                    $('#second-form-container').addClass('fade-in');
+                    $('#second-form-container').show();
+                    $('#username').val($('#email').val()); // 예시로 이메일을 아이디로 설정
+                }, 1000);
+            } else {
+                alert('인증번호가 틀렸습니다.');
+            }
+        });
+
+        // 두 번째 폼 제출 시
+        $('#second-form').submit(function (event) {
+            if($('#new-password').val() === $('#confirm-password').val()) {
+                $.ajax({
+                    type: "post",
+                    url: "/resetPassword",
+                    data: {
+                        MId : $('#MId').val(),
+                        MPw : $('#new-password').val()
+                    },
+                    success: () => {
+                        alert('비밀번호 재설정 성공');
+                    },
+                    error : () => {
+                        alert('비밀번호 재설정 실패');
+                    }
+                });
+                event.preventDefault();
+                alert('비밀번호 재설정이 완료되었습니다.');
+                window.location.href = 'login';
+            } else {
+                alert('새 비빌번호와 비밀번호 확인이 다릅니다.');
+            }
+        });
+    });
+</script>
+</body>
+</html>

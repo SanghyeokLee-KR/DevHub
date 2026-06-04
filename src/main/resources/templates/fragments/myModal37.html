@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="myModal">
+    <div id="myModal37" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>UI 미리보기</h2>
+            <div class="container-modal">
+                <div class="left">
+                    <!-- 미리보기 위치 조정(임시) -->
+                    <div class="tiop">
+                        <!-- UI 미리보기 예시 -->
+                        <div class="card-q16">
+                            <div class="box-q16">
+                                <div class="content-q16">
+                                    <span class="card-title-q16">CSS Clip-Path </span>
+                                    <div class="text-q16">
+                                        <strong>ELEKTRO RAKS</strong>
+                                        <p>Custom card</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="button-container">
+                        <!-- info~ 바꾸기 -->
+                        <button onclick="showContent('info73')" style="background-color:#FF2424;">HTML</button>
+                        <button onclick="showContent('info74')">CSS</button>
+                    </div>
+                    <!-- info~ 바꾸기 -->
+                    <div id="info73 class="content active">
+                        <h2 style="color:#FF2424">HTML Code</h2>
+                        <!-- pre id 숫자 증가시켜 -->
+                        <button class="copy-button" onclick="copyCode('htmlCode36')" style="background-color: #1a1d20">Copy HTML</button>
+                        <pre id="htmlCode36">
+&lt;div class=&quot;card&quot;&gt;
+        &lt;div class=&quot;box&quot;&gt;
+            &lt;div class=&quot;content&quot;&gt;
+                &lt;span class=&quot;card-title&quot;&gt;CSS Clip-Path &lt;/span&gt;
+                &lt;div class=&quot;text&quot;&gt;
+                    &lt;strong&gt;ELEKTRO RAKS&lt;/strong&gt;
+                    &lt;p&gt;Custom card&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+            </pre>
+                    </div>
+                    <!-- info~ 바꾸기 -->
+                    <div id="info74" class="content">
+                        <h2 style="color:#007bff;">CSS Code</h2>
+                        <!-- pre id 숫자 증가시켜 -->
+                        <button class="copy-button" onclick="copyCode('cssCode36')" style="background-color: #1a1d20">Copy CSS</button>
+                        <pre id="cssCode36">
+.card {
+    width: 11.875em;
+    height: 15.875em;
+    background: linear-gradient(135deg, #1afbf0, #da00ff);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.box {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.074);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    clip-path: polygon(54% 27%, 100% 50%, 100% 100%, 51% 74%, 0 50%, 0% 0%);
+    transition: 0.5s;
+    line-height: 1.2;
+}
+
+.card-title {
+    width: 100%;
+    font-weight: bold;
+    color: white;
+    display: block;
+    padding-top: 6.3em;
+    font-size: 1.2em;
+    transform: rotate(34deg);
+    transition: 0.5s;
+    margin-left: 25%;
+}
+
+.text {
+    color: white;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.card:hover .content {
+    clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0% 100%, 0 50%, 0% 0%);
+}
+
+.card:hover .card-title {
+    padding-top: 1em;
+    margin-left: 0%;
+    transform: rotate(0deg);
+}
+
+.card:hover .text {
+    opacity: 1;
+}
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

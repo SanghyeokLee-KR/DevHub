@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="myModal">
+  <div id="myModal17" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>UI 미리보기</h2>
+      <div class="container-modal">
+        <div class="left">
+          <!-- 미리보기 위치 조정(임시) -->
+          <div class="tiop">
+            <!-- UI 미리보기 예시 -->
+            <div class="InputContainer-02">
+              <input placeholder="Search.." id="input-02" class="input-02" name="text" type="text">
+            </div>
+          </div>
+        </div>
+        <div class="right">
+          <div class="button-container">
+            <!-- info~ 바꾸기 -->
+            <button onclick="showContent('info33')" style="background-color:#FF2424;">HTML</button>
+            <button onclick="showContent('info34')">CSS</button>
+          </div>
+          <!-- info~ 바꾸기 -->
+          <div id="info33" class="content active">
+            <h2 style="color:#FF2424">HTML Code</h2>
+            <!-- pre id 숫자 증가시켜 -->
+            <button class="copy-button" onclick="copyCode('htmlCode16')" style="background-color: #1a1d20">Copy HTML</button>
+            <pre id="htmlCode16">
+
+&lt;div class=&quot;InputContainer&quot;&gt;
+  &lt;input placeholder=&quot;Search..&quot; id=&quot;input&quot; class=&quot;input&quot; name=&quot;text&quot; type=&quot;text&quot;&gt;
+&lt;/div&gt;
+
+            </pre>
+          </div>
+          <!-- info~ 바꾸기 -->
+          <div id="info34" class="content">
+            <h2 style="color:#007bff;">CSS Code</h2>
+            <!-- pre id 숫자 증가시켜 -->
+            <button class="copy-button" onclick="copyCode('cssCode16')" style="background-color: #1a1d20">Copy CSS</button>
+            <pre id="cssCode16">
+.InputContainer {
+  width: 210px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom,rgb(227, 213, 255),rgb(255, 231, 231));
+  border-radius: 30px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.075);
+}
+
+.input {
+  width: 200px;
+  height: 40px;
+  border: none;
+  outline: none;
+  caret-color: rgb(255, 81, 0);
+  background-color: rgb(255, 255, 255);
+  border-radius: 30px;
+  padding-left: 15px;
+  letter-spacing: 0.8px;
+  color: rgb(19, 19, 19);
+  font-size: 13.4px;
+}
+
+                        </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

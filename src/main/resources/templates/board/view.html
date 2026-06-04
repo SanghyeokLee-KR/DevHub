@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevHub 게시글 상세 보기</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.svg">
+    <link rel="stylesheet" href="/libs/remixicon/fonts/remixicon.css">
+    <link rel="stylesheet" href="/libs/swiper/swiper-bundle.css">
+    <link rel="stylesheet" href="/libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <link rel="stylesheet" href="/css/viewCss.css">
+    <style>
+        body {
+            background: #1e1e1e;
+            color: #000;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            overflow-x: hidden; /* 가로 스크롤바 숨김 */
+            background-image: url('/images/background/board bg.webp'); /* 배경 이미지 추가 */
+            background-size: 120%; /* 배경 이미지가 전체를 덮도록 설정 */
+            background-repeat: no-repeat; /* 배경 이미지 반복 방지 */
+        }
+
+        .dropdown-menu {
+            background-color: #343a40; /* 드롭다운 메뉴 배경색 */
+            color: #fff; /* 드롭다운 메뉴 텍스트 색 */
+            position: absolute; /* 절대 위치로 설정 */
+            top: 0; /* 상단 정렬 */
+            left: 100%; /* 더보기 아이콘 오른쪽에 위치 */
+            z-index: 1000; /* 다른 요소 위에 나타나도록 설정 */
+            display: none; /* 기본적으로 숨겨짐 */
+            min-width: 120px; /* 최소 너비 */
+            padding: 10px 0; /* 내용과 모서리 간의 여백 */
+        }
+
+        .dropdown-menu.show {
+            display: block; /* 클릭 시 드롭다운 메뉴가 나타남 */
+        }
+
+
+        .dropdown-item {
+            color: #fff; /* 드롭다운 아이템 텍스트 색 */
+        }
+
+        .dropdown-item:hover {
+            background-color: #495057; /* 드롭다운 아이템 호버 배경색 */
+        }
+
+        .point-box img {
+            margin-right: 5px;
+        }
+
+        .navbar-brand .logo i {
+            margin-right: 10px;
+        }
+
+        .center-div {
+            position: relative;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .move-left {
+            transform: translateX(-30px); /* 원하는 거리로 조정 */
+        }
+
+        .right-div, .left-div {
+            position: absolute;
+            top: 0;
+            left: calc(100% + 20px); /* center-div의 오른쪽에 위치하도록 설정 */
+            width: 550px;
+            height: 90vh;
+            background-color: rgba(255, 255, 255, 0.85);
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out, left 0.5s ease-in-out;
+            padding: 20px; /* 내용과 모서리 간의 여백 */
+            border-radius: 8px; /* 외각선 둥글게 */
+        }
+
+        .show-right-div, .show-left-div{
+            opacity: 1;
+            left: calc(105% + 10px); /* 가운데로 이동 */
+        }
+
+        .title-text{
+            font-weight: bold;
+            /*margin-bottom: 10px;*/
+        }
+
+        .grid-vd {
+            display: flex;
+            font-size: 14px;
+            gap: 5px; /* 요소들 사이의 간격 */
+            border-bottom: 1px solid black; /* 아래쪽 경계선 */
+            padding: 10px 0; /* 상하 여백 */
+            position: relative; /* 부모 요소를 relative로 설정 */
+        }
+
+        .menu-vd{
+            position: absolute;
+            right: 10px; /* 오른쪽에 고정 */
+            bottom: 5px;
+        }
+
+        .view-vd {
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.85);
+            width: 600px;
+            height: 90vh;
+            padding: 20px; /* 내용과 모서리 간의 여백 */
+            border-radius: 8px; /* 외각선 둥글게 */
+        }
+
+        .comment-vd {
+            position: absolute;
+            bottom: 60px; /* 원하는 위치로 조정 */
+            left: 50%; /* 가운데 정렬 */
+            transform: translateX(-50%); /* 가운데 정렬 */
+            display: flex;
+            justify-content: center; /* 수평 가운데 정렬 */
+            align-items: center; /* 수직 가운데 정렬 */
+            border: 1px solid black;
+            width: 200px;
+        }
+
+
+        .comment-vd span {
+            margin-bottom: 15px; /* 각 아이콘 사이의 간격 조정 */
+            margin-right: 8px; /* 아이��� 사이의 간격 */
+        }
+
+        .btn-comment{
+            font-size: 14px; font-weight: bold; line-height: 1; color: #41464b;
+        }
+
+        .swiper-container {
+            width: 200px;
+            height: 500px; /* 이미지 높이 설정 */
+        }
+        .swiper-slide {
+            opacity: 0; /* 초기에 모든 슬라이드를 숨김 */
+            transition: opacity 2s ease; /* 서서히 나타나도록 설정 */
+        }
+        .swiper-slide img {
+            width: 200px; /* 이미지 너비 100% 설정 */
+            height: 100%; /* 이미지 높이 100% 설정 */
+            object-fit: cover; /* 이미지가 컨테이너에 맞게 조정되도록 설정 */
+        }
+
+        .comment-text{
+            color: black;
+        }
+
+        .btn-cd {
+            color: #FF8224;
+            text-decoration: none;
+            font-size: 25px;
+            border: none;
+            background: none;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-cd::before {
+            margin-left: auto;
+        }
+
+        .btn-cd::after, .btn-cd::before {
+            content: '';
+            width: 0%;
+            height: 2px;
+            background: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100% );
+            display: block;
+            transition: 0.5s;
+        }
+
+        .btn-cd:hover::after, .btn-cd:hover::before {
+            width: 100%;
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbarCollapse">
+
+<!-- 네비게이션 바 시작 -->
+<th:block th:replace="~{body/header :: header}"></th:block>
+<!-- 네비게이션 바 끝 -->
+
+<section style="margin-top: 120px; margin-bottom: 50px;">
+    <div class="container center-div" style="display: flex">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="/images/ai-1.jpg" alt="Slide 1">
+                </div>
+                <div class="swiper-slide">
+                    <img src="/images/ai-2.jpg" alt="Slide 2">
+                </div>
+                <div class="swiper-slide">
+                    <img src="/images/ai-3.jpg" alt="Slide 3">
+                </div>
+                <div class="swiper-slide">
+                    <img src="/images/ai-4.jpg" alt="Slide 4">
+                </div>
+                <div class="swiper-slide">
+                    <img src="/images/ai-5.jpg" alt="Slide 5">
+                </div>
+                <div class="swiper-slide">
+                    <img src="/images/ai-6.jpg" alt="Slide 6">
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <br/>
+            <!-- 광고 넣기 쌉가능 -->
+        </div>
+        <div style="position: relative; margin-left: 35px;">
+            <div class="view-vd center-div">
+                <div id="modiForm">
+                    <h2 class="title-text">[[${view.BTitle}]]</h2>
+                    <div class="grid-vd">
+                        작성자 : [[${view.BWriter}]] |
+                        조회수 : [[${view.BHit}]] |
+                        작성일 :
+                        <div class="menu-vd">
+                            <a type="button" id="viewDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 30" width="15" height="30">
+                                    <circle cx="5" cy="5" r="3" fill="black" />
+                                    <circle cx="5" cy="15" r="3" fill="black" />
+                                    <circle cx="5" cy="25" r="3" fill="black" />
+                                </svg>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="viewDropdown">
+                                <li><button class="dropdown-item" id="center-div">게시글</button></li>
+                                <li th:if="${not #lists.isEmpty(code)}"><button class="dropdown-item" id="right-div">코드보기</button></li>
+                                <li th:if="${session.loginId eq view.BWriter || session.loginId eq 'admin'}"><a class="dropdown-item" th:href="@{/modifyForm/{BNum}(BNum=${view.BNum})}">게시글 수정</a></li>
+                                <li th:if="${session.loginId eq view.BWriter || session.loginId eq 'admin'}"><a class="dropdown-item" th:href="@{/bDelete/{BNum}(BNum=${view.BNum})}">게시글 삭제</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="border-bottom: black"></div>
+                    <div>
+                        <br/>
+                        <img th:src="@{|/upload/${view.BFileName}|}" width="300px"><br/><br/>
+                        [[${view.BContent}]]
+                    </div>
+
+                    <div class="comment-vd">
+                        <!-- 추천 아이콘 -->
+                        <span>
+                            <label class="container-like">
+                              <input type="checkbox">
+                              <svg class="svg-like" id="Glyph" version="1.1" viewBox="0 0 32 32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M29.845,17.099l-2.489,8.725C26.989,27.105,25.804,28,24.473,28H11c-0.553,0-1-0.448-1-1V13  c0-0.215,0.069-0.425,0.198-0.597l5.392-7.24C16.188,4.414,17.05,4,17.974,4C19.643,4,21,5.357,21,7.026V12h5.002  c1.265,0,2.427,0.579,3.188,1.589C29.954,14.601,30.192,15.88,29.845,17.099z" id="XMLID_254_"></path><path d="M7,12H3c-0.553,0-1,0.448-1,1v14c0,0.552,0.447,1,1,1h4c0.553,0,1-0.448,1-1V13C8,12.448,7.553,12,7,12z   M5,25.5c-0.828,0-1.5-0.672-1.5-1.5c0-0.828,0.672-1.5,1.5-1.5c0.828,0,1.5,0.672,1.5,1.5C6.5,24.828,5.828,25.5,5,25.5z" id="XMLID_256_"></path></svg>
+                            </label>
+                            추천
+                        </span>
+
+                        <!-- 댓글 아이콘 -->
+                        <span style="margin: 0">
+                            <a data-bs-toggle="modal" data-bs-target="#OpneCommentModal" id="commentView">
+                                <ul class="ul-come" style="display: flex; flex-direction: column; justify-content: center; font-size: 16px; text-align: center; margin-bottom: 10px; margin-left: 10px; margin-right: 10px; margin-top: 5px;">
+                                  <li style="margin-bottom: 5px;">
+                                    <span class="icon-come" style="margin: 0; font-size: 38px; text-align: center;">💬</span>
+                                  </li>
+                                    댓글
+                                </ul>
+                            </a>
+                        </span>
+                        <!-- 북마크 아이콘 -->
+                        <span style="display: flex; flex-direction: column; justify-content: center;">
+                            <div class="bookmark-checkbox" style=" margin-top: 10px;">
+                              <input
+                                      type="checkbox"
+                                      id="bookmark-toggle"
+                                      class="bookmark-checkbox__input"
+                              />
+                              <label for="bookmark-toggle" class="bookmark-checkbox__label">
+                                <svg class="bookmark-checkbox__icon" viewBox="0 0 24 24">
+                                  <path
+                                          class="bookmark-checkbox__icon-back"
+                                          d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"
+                                  ></path>
+                                  <path class="bookmark-checkbox__icon-check" d="M8 11l3 3 5-5"></path>
+                                </svg>
+                              </label>
+                            </div>
+                            저장
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="right-div">
+                <h2>코드보기</h2>
+                <div style="background-color: black; height: 1px;"></div>
+                <div id="codeType" style="text-align: center; padding: 15px;"></div>
+                <div id="code"></div>
+                <!-- 여기에 코드 보기 요소 추가 -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Open Comment Modal -->
+<div class="modal fade" id="OpneCommentModal" tabindex="-1" aria-labelledby="OpneCommentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-vd">
+            <div class="modal-header">
+                <h4 class="modal-title text-center comment-text" id="OpneCommentModalLabel">댓글</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="commentsContainer">
+                    <!-- 여기에 댓글 목록이 추가됩니다 -->
+                    <ul id="commentList" class="list-group">
+                        <!-- 댓글이 추가될 자리 -->
+                    </ul>
+                </div>
+                <!-- 댓글 쓰기 폼 -->
+                <form id="commentForm" class="mt-3" style="margin-top: auto;">
+                    <div style="display: flex; width: 100%; height: 36px;">
+                        <input type="text" name="text" class="input-comment" id="commentContents" placeholder="댓글 달기..." style="flex: 1; margin-right: 5px;">
+                        <button type="submit" class="input-comment btn-comment" style="font-size: 14px; font-weight: bold;">댓글추가</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:replace="~{body/footer :: footer}"></th:block>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script src="/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/libs/swiper/swiper-bundle.min.js"></script>
+<script src="/js/swiper.js"></script>
+<script type="module" src="/js/app.js"></script>
+<script>
+    // Swiper 초기화
+    const swiper = new Swiper('.swiper-container', {
+        effect: 'fade', // fade 효과 설정
+        loop: true, // 무한 반복 설정
+        autoplay: {
+            delay: 3000, // 자동 재생 딜레이 설정 (3초)
+            disableOnInteraction: false, // 유저 인터랙션 후에도 자동 재생 유지
+        },
+        navigation: {
+            nextEl: '.swiper-button-next', // 다음 버튼 클래스 지정
+            prevEl: '.swiper-button-prev', // 이전 버튼 클래스 지정
+        },
+    });
+
+    let commentList;
+    let codeList;
+
+    $(document).ready(function() {
+        let projectVisible = false;
+
+        $('#center-div').click(function () {
+            if (!projectVisible) return;
+            $('.right-div').removeClass('show-right-div');
+            $('.center-div').removeClass('move-left'); // center-div 원래 위치로 복귀
+            projectVisible = false;
+        });
+
+        $('#right-div').click(function () {
+            if (projectVisible) {
+                $('.right-div').removeClass('show-right-div');
+                $('.center-div').removeClass('move-left'); // center-div 원래 위치로 복귀
+            } else {
+                $('.center-div').addClass('move-left');
+                $('.right-div').addClass('show-right-div');
+            }
+            projectVisible = !projectVisible;
+        });
+
+        $.ajax({
+            type:"post",
+            url : "/codeCheck",
+            data : {
+                DDNum : `[[${view.BNum}]]`
+            },
+            dataType : "json",
+            success : (list) =>{
+                codeList = list;
+
+                let output = '';
+                for(let i=0; i<list.length; i++) {
+                    output += `<a class="page dark gradient" data-page="${list[i].dtnum}"><button class="btn-cd">${list[i].dname} : Click!</button></a>`
+                }
+                $('#codeType').empty();
+                $('#codeType').append(output);
+
+                coding();
+            },
+            error : ()=>{
+                alert('code 가져오기 실패');
+            }
+        });
+    });
+
+    function coding() {
+        $(document).on("click", "#codeType a", function (e) {
+            for(let i=0; i<codeList.length; i++) {
+                console.log($(this).data('page'));
+                console.log(`${codeList[i].dtnum}`);
+                if(`${codeList[i].dtnum}` === ``+$(this).data('page')) {
+                    $('#code').empty();
+                    $('#code').append(`<textarea cols="20" rows="25" class="code-content form-control" style="background-color: rgba(255,255,255,0.75); color: black; border: 0;">${codeList[i].dcode}</textarea>`);
+                }
+            }
+        });
+    }
+
+    $('#commentView').click('click', function (e) {
+        $.ajax({
+            type : "post",
+            url : "/commentList",
+            data : {
+                CBNum: '[[${view.BNum}]]'
+            },
+            dataType : "json",
+            success : (list) => {
+                commentList = list;
+                commentUpdate(list);
+            },
+            error : ()=>{
+                alert('댓글 불러오기 실패');
+            }
+        });
+    });
+
+    function commentUpdate(list) {
+        let output = '<table class="table table-striped">';
+        output += '<thead>';
+        output += '<tr class="fs-6 ls-1 fw-bold">';
+        // output += '<th>댓글번호</th>';
+        // output += '<th>작성자</th>';
+        // output += '<th style="text-align: center;">내용</th>';
+        // output += '<th>작성날짜</th>';
+        output += '</tr>';
+        output += '</thead>';
+        output += '<tbody>';
+
+
+        for (let i=0; i < list.length; i++) {
+            output += '<tr>';
+
+            // 댓글 번호
+            // output += `<td>${i+1}</td>`;
+
+            // 댓글 작성자
+            output += `<td><div style="display: flex; align-items: center;"><p style="font-size: 18px; font-weight: 300; margin: 0;">${list[i].cwriter}</p><span style="margin-right: 10px;"></span><p style="font-size: 12px; margin: 0;">${list[i].cdate}</p></div><p style="font-size: 18px; margin: 0;">${list[i].ccontents}</p></td>`;
+
+            // 댓글 내용
+            // output += `<td style="text-align: center;">${list[i].ccontents}</td>`;
+
+            // 댓글 작성 날짜
+            // output += `<td>${list[i].cdate}</td>`;
+
+            output += '</tr>';
+        }
+
+        output += '</tbody>';
+        output += '</table>';
+
+        console.log(output);
+        $('#commentsContainer').empty();
+        $('#commentsContainer').append(output);
+    }
+
+
+    $(document).ready(function() {
+        // 댓글 추가 폼 제출 이벤트 핸들러
+        $('#commentForm').submit(function(e) {
+            e.preventDefault(); // 폼 기본 제출 동작 막기
+
+            // Ajax를 사용하여 서버로 데이터 전송
+            $.ajax({
+                url: '/commentWrite', // 댓글 추가 처리를 담당할 서버 URL
+                type: 'POST',
+                data: {                 // 서버로 보낼 데이터
+                    CWriter: '[[${session.loginId}]]',
+                    CContents: $('#commentContents').val(),
+                    CBNum: '[[${view.BNum}]]'
+                },
+                success: () => {
+                    // 성공적으로 댓글을 추가한 경우
+                    alert('댓글이 추가되었습니다.');
+                    $('#commentModal').modal('hide'); // 모달 닫기
+                    // 여기서 추가적으로 댓글 목록을 갱신하거나 필요한 작업을 수행할 수 있습니다.
+                },
+                error: () => {
+                    // 오류 발생 시 처리
+                    alert('댓글 추가 중 오류가 발생했습니다.');
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

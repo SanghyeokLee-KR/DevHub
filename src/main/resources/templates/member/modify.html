@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings</title>
+    <link rel="shortcut icon" type="images/x-icon" href="/images/favicon.svg">
+    <link rel="stylesheet" href="/libs/remixicon/fonts/remixicon.css">
+    <link rel="stylesheet" href="/libs/swiper/swiper-bundle.css">
+    <link rel="stylesheet" href="/libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/modiForm.css">
+    <link rel="stylesheet" href="/css/member/modify.css">
+
+</head>
+<body>
+<!-- 헤더 바 시작 -->
+<th:block th:replace="body/header :: header"></th:block>
+<!-- 헤더 바 끝 -->
+<form id="modiForm" th:action="@{/mModify}" method="post" enctype="multipart/form-data">
+    <div class="background-div_all">
+        <div class="container" style="padding-top: 125px">
+            <div class="row">
+                <div class="column_left ">
+                    <section class="section background-div">
+
+                    </section>
+                </div>
+
+                <div class="column_right">
+                    <section class="section">
+
+                        <label>회원 아이디</label>
+                        <input type="text" class="input" id="MId" name="MId" th:value="${modify.MId}" readonly>
+                        <br/><span id="check1"></span>
+
+                        <h2>비밀번호 변경</h2>
+                        <input type="password" class="input" id="MPw" name="MPw" placeholder="비밀번호" required/>
+                        <br/><span id="check2"></span>
+
+                        <input type="password" class="input" id="CheckPw" placeholder="비밀번호 확인" required/>
+                        <button type="button" class="btn-check" id="check-pw-btn"><i class="ri-check-line"></i></button>
+                        <br/><span id="check3"></span>
+
+                        <label>회원 이름</label>
+                        <input type="text" class="input" name="MName" th:value="${modify.MName}">
+
+                        <label>연락처</label>
+                        <input type="text" class="input" name="MPhone" th:value="${modify.MPhone}">
+
+                        <label>이메일 주소 입력</label>
+                        <input type="email" class="input" name="MEmail" th:placeholder="${modify.MEmail}">
+
+                        <label>생년월일</label>
+                        <input type="text" class="input" name="MBirth" th:value="${modify.MBirth}" readonly>
+
+                        <label for="MProfile">프로필 사진</label>
+                        <input class="form-control" type="file" name="MProfile" id="MProfile">
+
+                        <input type="hidden" class="input" name="MGender" th:value="${modify.MGender}">
+                        <input type="hidden" class="input" name="MPoint" th:value="${modify.MPoint}">
+
+                        <!-- 회원정보 수정 동의 버튼 -->
+                        <label for="exampleCheck1">
+                            <br>
+                            <p>회원정보 수정을 원하신다면 동의하여 주세요</p>
+                            <input type="checkbox" id="exampleCheck1" name="agreement">
+                            나는 회원정보 수정을 동의합니다.
+                        </label>
+
+                        <!-- 회원 수정 버튼 -->
+                        <button type="submit" class="button danger">회원 수정</button>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script src="https://cdn.lordicon.com/lordicon.js"></script>
+<script src="/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/libs/swiper/swiper-bundle.min.js"></script>
+<script src="/js/swiper.js"></script>
+<script type="module" src="/js/app.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
+<script>
+    document.getElementById('check-pw-btn').addEventListener('click', function() {
+        const pw = document.getElementById('MPw').value;
+        const checkPw = document.getElementById('CheckPw').value;
+        const btn = document.getElementById('check-pw-btn');
+
+        if (pw === checkPw) {
+            btn.classList.add('valid');
+            btn.classList.remove('invalid');
+        } else {
+            btn.classList.add('invalid');
+            btn.classList.remove('valid');
+        }
+    });
+
+    document.getElementById('modiForm').addEventListener('submit', function(event) {
+        const pw = document.getElementById('MPw').value;
+        const checkPw = document.getElementById('CheckPw').value;
+
+        if (!document.getElementById('exampleCheck1').checked) {
+            alert('회원정보 수정을 동의해주세요.');
+            event.preventDefault();
+        } else if (pw !== checkPw) {
+            alert('비밀번호가 일치하지 않습니다.');
+            event.preventDefault();
+        }
+    });
+</script>
+</body>
+</html>

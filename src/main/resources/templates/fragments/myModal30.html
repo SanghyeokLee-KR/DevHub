@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="myModal">
+    <div id="myModal30" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>UI 미리보기</h2>
+            <div class="container-modal">
+                <div class="left">
+                    <!-- 미리보기 위치 조정(임시) -->
+                    <div class="tiop">
+                        <!-- UI 미리보기 예시 -->
+                        <div class="card-q09">
+
+                            <div class="card__date-q09">
+                                <span class="time-q09">14:34</span>
+                                <span class="date-q09">Mon.,21 August</span>
+                            </div>
+                            <div class="popup-q09">
+                                <p class="title-q09">Software update</p>
+                                <p>Postponed update</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="button-container">
+                        <!-- info~ 바꾸기 -->
+                        <button onclick="showContent('info59')" style="background-color:#FF2424;">HTML</button>
+                        <button onclick="showContent('info60')">CSS</button>
+                    </div>
+                    <!-- info~ 바꾸기 -->
+                    <div id="info59" class="content active">
+                        <h2 style="color:#FF2424">HTML Code</h2>
+                        <!-- pre id 숫자 증가시켜 -->
+                        <button class="copy-button" onclick="copyCode('htmlCode29')" style="background-color: #1a1d20">Copy HTML</button>
+                        <pre id="htmlCode29">
+&lt;div class="card"&gt;
+
+    &lt;div class="card__date"&gt;
+        &lt;span class="time"&gt;14:34&lt;/span&gt;
+        &lt;span class="date"&gt;Mon., 21 August&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="popup"&gt;
+        &lt;p class="title"&gt;Software update&lt;/p&gt;
+        &lt;p&gt;Postponed update&lt;/p&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;
+            </pre>
+                    </div>
+                    <!-- info~ 바꾸기 -->
+                    <div id="info60" class="content">
+                        <h2 style="color:#007bff;">CSS Code</h2>
+                        <!-- pre id 숫자 증가시켜 -->
+                        <button class="copy-button" onclick="copyCode('cssCode29')" style="background-color: #1a1d20">Copy CSS</button>
+                        <pre id="cssCode29">
+.card {
+    width: 164px;
+    height: 276px;
+    background: rgb(0, 0, 0);
+    border: 3px solid rgb(17, 4, 94);
+    border-radius: 15px;
+    position: relative;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    transition: all 1s ease;
+    color: antiquewhite;
+}
+
+.card::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    bottom: 10px;
+    right: 77px;
+    border-radius: 50%;
+    background-color: rgb(17, 4, 94);
+}
+
+.card__date {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.time {
+    font-size: 2em;
+}
+
+.popup {
+    background-color: #444746;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    font-size: .8em;
+    padding: 3px;
+}
+
+.popup .title {
+    font-size: 9px;
+    color: #9cbde2;
+}
+
+.card__date , .popup {
+    opacity: 0;
+    transition: all .5s ease;
+}
+
+.card:hover {
+    transform: rotate3d(5, 5, 10, -45deg);
+}
+
+.card:hover .card__date , .card:hover .popup {
+    opacity: 1;
+}
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

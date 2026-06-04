@@ -1,0 +1,35 @@
+.price-section{
+
+    .card{
+        background-color: $dark;
+    }
+}
+
+.price-section-2{
+     .card {
+        position: relative;
+        width: 98%;
+        overflow: hidden;
+        padding: 30px 30px;
+        ul{
+            li{
+                font-size: 20px;
+            }
+        }
+    }
+    .rotate-text{
+        h3 {
+            top: 41%;
+            left: 48%;
+            transform: rotate(90deg) !important;
+            color: #ffe0e2;
+        }
+        
+    } 
+}
+
+.helth-price{
+    .card{
+        background-color: $dark;
+    }
+}

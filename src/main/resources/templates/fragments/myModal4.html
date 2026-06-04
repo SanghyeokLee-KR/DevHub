@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="myModal">
+    <div id="myModal4" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>UI 미리보기</h2>
+            <div class="container-modal">
+                <div class="left">
+                    <!-- 미리보기 위치 조정(임시) -->
+                    <div class="tiop">
+                    <!-- UI 미리보기 예시 -->
+                    <div class="wip-loader" style="left: 25%"></div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="button-container">
+                        <!-- info~ 바꾸기 -->
+                        <button onclick="showContent('info7')" style="background-color:#FF2424;">HTML</button>
+                        <button onclick="showContent('info8')">CSS</button>
+                    </div>
+                    <!-- info~ 바꾸기 -->
+                    <div id="info7" class="content active">
+                        <h2 style="color:#FF2424">HTML Code</h2>
+                        <!-- pre id 숫자 증가시켜 -->
+                        <button class="copy-button" onclick="copyCode('htmlCode3')" style="background-color: #1a1d20">Copy HTML</button>
+                        <pre id="htmlCode3">
+&lt;div class="loader"&gt; &lt;/div&gt;
+                        </pre>
+                    </div>
+                    <!-- info~ 바꾸기 -->
+                    <div id="info8" class="content">
+                        <h2 style="color:#007bff;">CSS Code</h2>
+                        <!-- pre id 숫자 증가시켜 -->
+                        <button class="copy-button" onclick="copyCode('cssCode3')" style="background-color: #1a1d20">Copy CSS</button>
+                        <pre id="cssCode3">
+.loader {
+ position: relative;
+ width: 2.5em;
+ height: 2.5em;
+ transform: rotate(165deg);
+}
+
+.loader:before, .loader:after {
+ content: "";
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ display: block;
+ width: 0.5em;
+ height: 0.5em;
+ border-radius: 0.25em;
+ transform: translate(-50%, -50%);
+}
+
+.loader:before {
+ animation: before8 2s infinite;
+}
+
+.loader:after {
+ animation: after6 2s infinite;
+}
+
+@keyframes before8 {
+ 0% {
+  width: 0.5em;
+  box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+ }
+
+ 35% {
+  width: 2.5em;
+  box-shadow: 0 -0.5em rgba(225, 20, 98, 0.75), 0 0.5em rgba(111, 202, 220, 0.75);
+ }
+
+ 70% {
+  width: 0.5em;
+  box-shadow: -1em -0.5em rgba(225, 20, 98, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75);
+ }
+
+ 100% {
+  box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+ }
+}
+
+@keyframes after6 {
+ 0% {
+  height: 0.5em;
+  box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+ }
+
+ 35% {
+  height: 2.5em;
+  box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75);
+ }
+
+ 70% {
+  height: 0.5em;
+  box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75);
+ }
+
+ 100% {
+  box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+ }
+}
+
+.loader {
+ position: absolute;
+ top: calc(50% - 1.25em);
+ left: calc(50% - 1.25em);
+}
+
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

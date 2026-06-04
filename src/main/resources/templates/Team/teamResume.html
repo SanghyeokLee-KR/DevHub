@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>|CraftAI - 반응형 Bootstrap 5 랜딩 페이지</title>
+    <link rel="shortcut icon" type="images/x-icon" href="/images/favicon.svg">
+    <link rel="stylesheet" href="/libs/remixicon/fonts/remixicon.css">
+    <link rel="stylesheet" href="/libs/swiper/swiper-bundle.css">
+    <link rel="stylesheet" href="/libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <link rel="stylesheet" href="/css/header.css">
+
+    <style>
+        body {
+            margin-top: 200px;
+            background-image: url('/images/robot.JPG');
+            background-size: 120%;
+            background-repeat: no-repeat;
+            background-color: #292424;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+        }
+
+        header {
+            background-color: #000000;
+        }
+
+        footer {
+            margin-top: 50px;
+        }
+
+        .dropdown-menu {
+            background-color: #ffffff;
+            color: #000;
+            width: 200px;
+        }
+
+        .dropdown-item {
+            color: #000;
+        }
+
+        .dropdown-item:hover,
+        .dropdown-item {
+            background-color: #e9ecef;
+            color: #000 !important;
+        }
+
+        .point-box img {
+            margin-right: 5px;
+        }
+
+        .navbar-brand .logo i {
+            margin-right: 10px;
+        }
+
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-control {
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #4e5c8a;
+        }
+
+        .btn-submit {
+            background-color: #4e5c8a;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            margin-right: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: #3b4a6b;
+        }
+
+        .btn-cancel {
+            background-color: #dc3545;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            margin-right: 10px;
+        }
+
+        .btn-cancel:hover {
+            background-color: #c82333;
+        }
+
+        .btn-reset {
+            background-color: #6c757d;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .btn-reset:hover {
+            background-color: #5a6268;
+        }
+
+        .coding-input-group span {
+            background-color: #6c757d;
+            color: #ffffff;
+        }
+
+        .coding-input-group textarea {
+            resize: vertical;
+        }
+
+        .dropdown-toggle::after {
+            display: none;
+        }
+
+        .dropdown-toggle:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        .dropdown-menu {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .dropdown-item i {
+            margin-right: 10px;
+        }
+
+        .dropdown-item,
+        .dropdown-item:hover {
+            background-color: #3b4a6b;
+            color: black !important;
+        }
+
+        .dropdown-item {
+            font-weight: 600;
+        }
+
+        .toolbar select,
+        .toolbar input[type="file"] {
+            margin-right: 10px;
+        }
+
+        .form-container .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .editor-toolbar select,
+        .editor-toolbar button,
+        .editor-toolbar input[type="file"] {
+            margin-right: 10px;
+        }
+
+        .editor-toolbar select {
+            height: 30px;
+        }
+
+        .editor-toolbar button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        #user-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .form-container .nickname {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #4e5c8a;
+            margin-bottom: 15px;
+        }
+
+        .input-group .dropdown {
+            flex: 0 0 auto;
+        }
+
+        .input-group .form-control {
+            flex: 1 1 auto;
+            margin-left: -1px;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .quill-container {
+            border: 1px solid #fff;
+        }
+
+        .quill-editor {
+            border: 1px solid #fff;
+            background-color: #fff;
+            color: #000;
+        }
+
+        .title-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .title-group .form-control {
+            flex: 1;
+        }
+
+        .title-group .dropdown,
+        .title-group .form-control,
+        .title-group .btn-reset {
+            height: calc(2.25rem + 2px); /* Ensure same height for all elements */
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        #nowType {
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+
+        .job-details {
+            display: grid;
+            grid-template-columns: repeat(2, 2fr);
+            gap: 10px;
+        }
+
+        .job-details div {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .job-details span {
+            width: 75px;
+            text-align: left;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .input-tp {
+            border: 2px solid transparent;
+            width: 10em;
+            height: 2.5em;
+            padding-left: 0.8em;
+            outline: none;
+            overflow: hidden;
+            background-color: #F3F3F3;
+            border-radius: 10px;
+            transition: all 0.5s;
+            flex: 1;
+        }
+
+        .input-tp:hover,
+        .input-tp:focus {
+            border: 2px solid #4A9DEC;
+            box-shadow: 0px 0px 0px 7px rgb(74, 157, 236, 20%);
+            background-color: white;
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbarCollapse">
+<!-- 네비게이션 바 시작 -->
+<th:block th:replace="body/header :: header"></th:block>
+<!-- 네비게이션 바 끝 -->
+
+<section class="container form-container" style="margin-bottom: 150px;">
+    <form action="/teamResumeSubmit" method="post">
+        <div class="form-group title-group mb-3 align-items-start">
+            <input class="form-control" name="RTitle" placeholder="이력서 제목을 입력해 주세요." required type="text" style="border: 5px;" />
+            <input type="reset" class="btn btn-reset" value="초기화"/>
+        </div>
+
+        <!-- 팀 관련 항목 -->
+        <div>
+            <div class="job-details" style="color: black;">
+                <div>
+                    <span>아이디 : </span>
+                    <input class="input-tp" th:value="${session.loginId}" name="RMId" readonly />
+                </div>
+                <div>
+                    <span>경력 : </span>
+                    <input class="input-tp" placeholder="Experience" name="RExperience"/>
+                </div>
+                <div>
+                    <span>학력사항 : </span>
+                    <input class="input-tp" placeholder="EducationRequirement" name="REducation"/>
+                </div>
+                <div>
+                    <span>보유기술 : </span>
+                    <input class="input-tp" placeholder="SkillsPossessed" name="RSkill"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="job-details" style="color: black; margin-top: 10px;"><span style="width: 300px;">성장과정</span></div>
+        <div class="form-group mb-3">
+            <div id="quillEditor" style="height: 300px;">
+                <textarea rows="13px" cols="92px" placeholder="성장과정을 적어주세요." name="RGProcess"></textarea>
+            </div>
+        </div>
+
+        <div class="job-details" style="color: black;"><span style="width: 300px;">성격 및 생활신조</span></div>
+        <div class="form-group mb-3">
+            <div style="height: 300px;">
+                <textarea rows="13px" cols="92px" placeholder="성격 및 생활신조를 적어주세요." name="RPersonality"></textarea>
+            </div>
+        </div>
+
+        <div class="job-details" style="color: black;"><span style="width: 300px;">장점 및 단점</span></div>
+        <div class="form-group mb-3">
+            <div style="height: 300px;">
+                <textarea rows="13px" cols="92px" placeholder="장점 및 단점을 적어주세요." name="RAD"></textarea>
+            </div>
+        </div>
+
+        <div class="job-details" style="color: black;"><span style="width: 300px;">지원동기</span></div>
+        <div class="form-group mb-3">
+            <div style="height: 300px;">
+                <textarea rows="13px" cols="92px" placeholder="지원동기를 적어주세요." name="RMotive"></textarea>
+            </div>
+        </div>
+
+        <div class="job-details" style="color: black;"><span style="width: 300px;">회사 업무에 대한 자세 및 포부</span></div>
+        <div class="form-group mb-3 quill-container">
+            <div style="height: 300px;">
+                <textarea rows="13px" cols="92px" placeholder="회사 업무에 대한 자세 및 포부를 적어주세요." name="RAspiration"></textarea>
+            </div>
+        </div>
+
+        <div id="insertBoard" class="button-group">
+            <input type="hidden" name="RPId" th:value="${PId}"/>
+            <input type="submit" class="btn btn-submit" value="등록"/>
+        </div>
+    </form>
+</section>
+
+<th:block th:replace="body/footer :: footer"></th:block>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script src="/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/libs/swiper/swiper-bundle.min.js"></script>
+<script src="/js/swiper.js"></script>
+<script type="module" src="/js/app.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+</body>
+</html>

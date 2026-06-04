@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="myModal">
+    <div id="myModal7" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>UI 미리보기</h2>
+            <div class="container-modal">
+                <div class="left">
+                    <!-- 미리보기 위치 조정(임시) -->
+                    <div class="tiop">
+                        <!-- UI 미리보기 예시 -->
+                        <div class="img-loader"></div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="button-container">
+                        <!-- info~ 바꾸기 -->
+                        <button onclick="showContent('info13')" style="background-color:#FF2424;">HTML</button>
+                        <button onclick="showContent('info14')">CSS</button>
+                    </div>
+                    <!-- info~ 바꾸기 -->
+                    <div id="info13" class="content active">
+                        <h2 style="color:#FF2424">HTML Code</h2>
+                        <!-- pre id 숫자 증가시켜 -->
+                        <button class="copy-button" onclick="copyCode('htmlCode6')" style="background-color: #1a1d20">Copy HTML</button>
+                        <pre id="htmlCode6">
+&lt;div class="loader">&gt; &lt;/div&gt;
+                        </pre>
+                    </div>
+                    <!-- info~ 바꾸기 -->
+                    <div id="info14" class="content">
+                        <h2 style="color:#007bff;">CSS Code</h2>
+                        <!-- pre id 숫자 증가시켜 -->
+                        <button class="copy-button" onclick="copyCode('cssCode6')" style="background-color: #1a1d20">Copy CSS</button>
+                        <pre id="cssCode6">
+.loader {
+  width: 64px;
+  height: 64px;
+  position: relative;
+  background: #FFF;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.loader:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 40px;
+  transform: rotate(45deg) translate(30%, 40%);
+  background: #ff9371;
+  box-shadow: 32px -34px 0 5px #ff3d00;
+  animation: slide 2s infinite ease-in-out alternate;
+}
+
+.loader:after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ff3d00;
+  transform: rotate(0deg);
+  transform-origin: 35px 145px;
+  animation: rotate 2s infinite ease-in-out;
+}
+
+@keyframes slide {
+  0% , 100% {
+    bottom: -35px
+  }
+
+  25% , 75% {
+    bottom: -2px
+  }
+
+  20% , 80% {
+    bottom: 2px
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(-15deg)
+  }
+
+  25% , 75% {
+    transform: rotate(0deg)
+  }
+
+  100% {
+    transform: rotate(25deg)
+  }
+}
+
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
