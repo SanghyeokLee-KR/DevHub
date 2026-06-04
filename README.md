@@ -204,25 +204,11 @@ int points = (LocalDate.now().getDayOfWeek() == DayOfWeek.SUNDAY) ? 100 : 10;
 ```
 `EventController` `EventService` `attendance.html`
 
-### 로그인 기록 (ipinfo API)
-
-로그인할 때 ipinfo로 접속 IP·위치·ISP를 받아 로그인 이력으로 남기고, 마이페이지의 "로그인 기록"에서 보여줍니다.
-
-<img src="docs/images/login-history.png" width="55%">
-
-```javascript
-// ipaddress.js — ipinfo 조회 후 /log 로 저장
-fetch('https://ipinfo.io/json?token=...')
-  .then(res => res.json())
-  .then(d => { /* d.ip, d.city, d.region, d.country, d.org */ });
-```
-`static/js/ipaddress.js` `LoginEntity` `MemberService.log()` `getLoginHistoryByUserId()`
-
 ### AI 챗봇 (Dialogflow)
 
 사용자 메시지를 Google Dialogflow로 보내 의도를 분석하고 답하는 안내 챗봇입니다.
 
-<img src="docs/images/chatbot-2.png" width="48%">
+<img src="docs/images/chatbot-1.png" height="185"> <img src="docs/images/chatbot-2.png" height="185">
 
 ```java
 // ChatController.java
@@ -236,11 +222,17 @@ public String chat(@RequestParam String message) {
 
 ### 내 정보 (마이페이지)
 
-프로필과 계정 정보에 더해 로그인 기록·구매 내역·회원 수정으로 들어갑니다.
+프로필·계정 정보에 더해 로그인 기록·구매 내역·회원 수정으로 들어갑니다. 로그인할 때는 ipinfo로 접속 IP·위치·ISP를 받아 이력으로 남기고, "로그인 기록"에서 보여줍니다.
 
-<img src="docs/images/my-info.png" width="55%">
+<img src="docs/images/my-info.png" width="48%"> <img src="docs/images/login-history.png" width="48%">
 
-`MemberController(/mView/{MId})` `member/view.html`
+```javascript
+// ipaddress.js — ipinfo 조회 후 /log 로 저장
+fetch('https://ipinfo.io/json?token=...')
+  .then(res => res.json())
+  .then(d => { /* d.ip, d.city, d.region, d.country, d.org */ });
+```
+`MemberController(/mView/{MId})` `member/view.html` · `static/js/ipaddress.js` `LoginEntity` `MemberService.log()` `getLoginHistoryByUserId()`
 
 ### 게시판 API 연동
 
