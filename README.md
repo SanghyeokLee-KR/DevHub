@@ -161,7 +161,7 @@ http.authorizeHttpRequests(auth -> auth
 
 SockJS + STOMP로 메시지를 `/topic/public` 에 브로드캐스트하는 공개 채팅방입니다. 보낸 사람 프로필을 누르면 카드가 뜹니다.
 
-<img src="docs/images/gallery-chat.png" width="48%"> <img src="docs/images/chat-profile.png" width="48%">
+<img src="docs/images/gallery-chat.png" height="250"> <img src="docs/images/chat-profile.png" height="250">
 
 ```java
 // ChatController.java
@@ -193,7 +193,7 @@ IMP.request_pay({
 
 하루 한 번 출석하면 포인트를 주고, 같은 날 중복 적립은 막습니다. 일요일이면 100, 평일이면 10포인트입니다.
 
-<img src="docs/images/attendance-stamp.png" width="40%"> <img src="docs/images/attendance-rewards.png" width="40%">
+<img src="docs/images/attendance-stamp.png" height="200"> <img src="docs/images/attendance-rewards.png" height="200">
 
 ```java
 // EventService.event()
