@@ -60,6 +60,22 @@ flowchart LR
     C -.-> F["Dialogflow · iamport · ipinfo"]
 ```
 
+## 프로젝트 구조
+
+```
+src/main/java/com/icia/devhub/
+├── controller/   # 요청 처리 (Member · Board · Order · Event · Chat · Team)
+├── service/      # 비즈니스 로직 (@Transactional)
+├── dao/          # Spring Data JPA Repository
+├── dto/          # DTO + Entity (board · member · order · team · event · coupon)
+└── config/       # Security · WebSocket · Dialogflow · 파일 업로드 설정
+
+src/main/resources/
+├── templates/    # Thymeleaf 뷰
+├── static/       # JS · CSS · 이미지 · libs (Bootstrap)
+└── application.properties · application-h2.properties (H2 데모)
+```
+
 ## 내가 맡은 부분
 
 팀에서 역할을 나눠 작업했고, 아래는 제가 직접 구현한 부분입니다. (팀 모집·이력서 모듈은 다른 팀원이 맡았습니다.)
@@ -180,10 +196,10 @@ public String chat(@RequestParam String message) {
 ```
 `RestfulController` `BoardController` `BoardService` `CommentService` `board/*.html`
 
-### 코드 / UI 공유 (CodeMirror)
+### 코드 편집기 (CodeMirror)
 
-오픈소스 UI 컴포넌트를 미리보고 CSS/HTML 코드를 복사할 수 있고, CodeMirror로 코드를 하이라이팅합니다. 게시글에 붙는 코드 스니펫은 언어와 본문을 따로 저장합니다.
-`coding.html` `services.html` `dto/board/CodeEntity`
+게시글에 코드를 첨부할 때 CodeMirror로 언어별 문법 하이라이팅을 지원하고, 코드 스니펫은 언어와 본문을 나눠 저장합니다.
+`coding.html` `dto/board/CodeEntity`
 
 ## 기억에 남는 문제들
 
@@ -212,7 +228,11 @@ public String chat(@RequestParam String message) {
 
 ## 팀
 
-| | |
+화면은 **Bootstrap 템플릿**을 기반으로 구성한 5인 팀 프로젝트입니다. 팀원별 주요 역할은 다음과 같습니다.
+
+| 팀원 | 담당 |
 |---|---|
-| **이상혁** (본인) | 회원가입·로그인, Spring Security, 실시간 채팅, 포인트 결제, 출석, 마이페이지, 로그인 기록, AI 챗봇, 게시판 API, 코드 공유 |
-| 팀원 4인 | 팀 모집·이력서 모듈, 공통 UI/디자인 |
+| **이상혁** (본인) | 회원가입·로그인(프론트+백), Spring Security, 실시간 채팅(WebSocket), 포인트 충전·카카오페이, 출석체크, 마이페이지, 로그인 기록(ipinfo), AI 챗봇, 게시판 API 연동, 코드 편집기(CodeMirror) |
+| 김보겸 | Bootstrap 템플릿 페이지 정리·네이밍, 소개·문의하기 페이지 |
+| 유기민 | HTML/CSS UI 컴포넌트 판매 페이지 |
+| 하진철 | 게시판, 구인구직(팀 모집·이력서) |
