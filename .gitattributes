@@ -16,3 +16,11 @@ src/main/resources/static/scss/**   linguist-vendored
 # 문서 · 다이어그램
 docs/**       linguist-documentation
 diagrams/**   linguist-documentation
+
+# 템플릿 데모 페이지 · UI 컴포넌트 쇼케이스 모달
+# (대부분 외부/템플릿 UI 코드를 보여주는 것이라 핵심 로직 아님)
+src/main/resources/templates/fragments/**     linguist-vendored
+src/main/resources/templates/services.html    linguist-vendored
+src/main/resources/templates/services2.html   linguist-vendored
+src/main/resources/templates/about.html       linguist-vendored
+src/main/resources/templates/contact.html     linguist-vendored
