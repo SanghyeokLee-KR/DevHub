@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 500" font-family="'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="many" markerWidth="14" markerHeight="14" refX="11" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M11,2 L2,7 L11,12 M2,7 L11,7" fill="none" stroke="#94a3b8" stroke-width="1.1"/>
+    </marker>
+  </defs>
+  <rect width="880" height="500" fill="#ffffff"/>
+
+  <!-- ===== relationship lines (behind boxes) ===== -->
+  <g stroke="#94a3b8" stroke-width="1.2" fill="none" marker-end="url(#many)">
+    <path d="M180,232 L338,55"/>
+    <path d="M180,246 L338,145"/>
+    <path d="M180,258 L338,228"/>
+    <path d="M180,270 L338,308"/>
+    <path d="M180,282 L338,398"/>
+    <path d="M490,55 L658,41"/>
+    <path d="M490,62 L658,101"/>
+    <path d="M490,145 L658,163"/>
+    <path d="M490,398 L658,398"/>
+    <path d="M735,421 L735,443"/>
+  </g>
+
+  <!-- ===== MEMBER (hub) ===== -->
+  <rect x="30" y="200" width="150" height="92" rx="5" fill="#ffffff" stroke="#6366f1" stroke-width="1.3"/>
+  <rect x="30" y="200" width="150" height="24" rx="5" fill="#6366f1"/>
+  <rect x="30" y="214" width="150" height="10" fill="#6366f1"/>
+  <text x="105" y="217" text-anchor="middle" font-size="12.5" font-weight="700" fill="#ffffff">MEMBER</text>
+  <text x="44" y="245" font-size="11" fill="#475569">MId &#128273;</text>
+  <text x="44" y="263" font-size="11" fill="#64748b">MEmail</text>
+  <text x="44" y="281" font-size="11" fill="#64748b">MPoint</text>
+
+  <!-- helper entities: header + PK -->
+  <!-- BOARD -->
+  <rect x="340" y="30" width="150" height="50" rx="5" fill="#ffffff" stroke="#3b82f6" stroke-width="1.2"/>
+  <rect x="340" y="30" width="150" height="22" rx="5" fill="#3b82f6"/><rect x="340" y="43" width="150" height="9" fill="#3b82f6"/>
+  <text x="415" y="46" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">BOARD</text>
+  <text x="352" y="70" font-size="10.5" fill="#475569">BNum &#128273;</text>
+
+  <!-- COMMENT -->
+  <rect x="660" y="18" width="150" height="46" rx="5" fill="#fff" stroke="#3b82f6" stroke-width="1.2"/>
+  <rect x="660" y="18" width="150" height="22" rx="5" fill="#3b82f6"/><rect x="660" y="31" width="150" height="9" fill="#3b82f6"/>
+  <text x="735" y="34" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">COMMENT</text>
+  <text x="672" y="57" font-size="10.5" fill="#475569">CNum &#128273;</text>
+
+  <!-- CODE -->
+  <rect x="660" y="78" width="150" height="46" rx="5" fill="#fff" stroke="#3b82f6" stroke-width="1.2"/>
+  <rect x="660" y="78" width="150" height="22" rx="5" fill="#3b82f6"/><rect x="660" y="91" width="150" height="9" fill="#3b82f6"/>
+  <text x="735" y="94" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">CODE</text>
+  <text x="672" y="117" font-size="10.5" fill="#475569">DTNum &#128273;</text>
+
+  <!-- PRODUCT -->
+  <rect x="340" y="120" width="150" height="50" rx="5" fill="#fff" stroke="#10b981" stroke-width="1.2"/>
+  <rect x="340" y="120" width="150" height="22" rx="5" fill="#10b981"/><rect x="340" y="133" width="150" height="9" fill="#10b981"/>
+  <text x="415" y="136" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">PRODUCT</text>
+  <text x="352" y="160" font-size="10.5" fill="#475569">PId &#128273;</text>
+
+  <!-- PAYMENT -->
+  <rect x="660" y="140" width="150" height="46" rx="5" fill="#fff" stroke="#10b981" stroke-width="1.2"/>
+  <rect x="660" y="140" width="150" height="22" rx="5" fill="#10b981"/><rect x="660" y="153" width="150" height="9" fill="#10b981"/>
+  <text x="735" y="156" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">PAYMENT</text>
+  <text x="672" y="179" font-size="10.5" fill="#475569">PId &#128273;</text>
+
+  <!-- EVENT -->
+  <rect x="340" y="205" width="150" height="46" rx="5" fill="#fff" stroke="#f59e0b" stroke-width="1.2"/>
+  <rect x="340" y="205" width="150" height="22" rx="5" fill="#f59e0b"/><rect x="340" y="218" width="150" height="9" fill="#f59e0b"/>
+  <text x="415" y="221" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">EVENT</text>
+  <text x="352" y="244" font-size="10.5" fill="#475569">IId &#128273; · 출석</text>
+
+  <!-- LOGIN -->
+  <rect x="340" y="285" width="150" height="46" rx="5" fill="#fff" stroke="#f59e0b" stroke-width="1.2"/>
+  <rect x="340" y="285" width="150" height="22" rx="5" fill="#f59e0b"/><rect x="340" y="298" width="150" height="9" fill="#f59e0b"/>
+  <text x="415" y="301" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">LOGIN</text>
+  <text x="352" y="324" font-size="10.5" fill="#475569">LId &#128273; · IP/위치</text>
+
+  <!-- TEAM -->
+  <rect x="340" y="375" width="150" height="46" rx="5" fill="#fff" stroke="#8b5cf6" stroke-width="1.2"/>
+  <rect x="340" y="375" width="150" height="22" rx="5" fill="#8b5cf6"/><rect x="340" y="388" width="150" height="9" fill="#8b5cf6"/>
+  <text x="415" y="391" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">TEAM</text>
+  <text x="352" y="414" font-size="10.5" fill="#475569">TId &#128273;</text>
+
+  <!-- PROJECT -->
+  <rect x="660" y="375" width="150" height="46" rx="5" fill="#fff" stroke="#8b5cf6" stroke-width="1.2"/>
+  <rect x="660" y="375" width="150" height="22" rx="5" fill="#8b5cf6"/><rect x="660" y="388" width="150" height="9" fill="#8b5cf6"/>
+  <text x="735" y="391" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">PROJECT</text>
+  <text x="672" y="414" font-size="10.5" fill="#475569">PId &#128273;</text>
+
+  <!-- RESUME -->
+  <rect x="660" y="443" width="150" height="46" rx="5" fill="#fff" stroke="#8b5cf6" stroke-width="1.2"/>
+  <rect x="660" y="443" width="150" height="22" rx="5" fill="#8b5cf6"/><rect x="660" y="456" width="150" height="9" fill="#8b5cf6"/>
+  <text x="735" y="459" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">RESUME</text>
+  <text x="672" y="482" font-size="10.5" fill="#475569">RId &#128273;</text>
+</svg>

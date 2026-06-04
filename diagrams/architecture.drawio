@@ -1,0 +1,52 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram name="System Architecture" id="devhub-arch">
+    <mxGraphModel dx="1024" dy="640" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="560" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="browser" value="Browser&#10;Thymeleaf · jQuery · SockJS / STOMP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f5f9;strokeColor=#94a3b8;fontColor=#334155;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="280" y="40" width="290" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="app" value="Spring Boot Application" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8fafc;strokeColor=#cbd5e1;verticalAlign=top;align=left;spacingLeft=12;spacingTop=8;fontColor=#64748b;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="230" y="130" width="380" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="sec" value="Spring Security  ·  Session → SecurityContext" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ede9fe;strokeColor=#8b5cf6;fontColor=#5b21b6" vertex="1" parent="1">
+          <mxGeometry x="260" y="168" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ctrl" value="Controller&#10;Member · Board · Order · Event · Chat · Team" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dbeafe;strokeColor=#3b82f6;fontColor=#1e40af;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="260" y="226" width="320" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="svc" value="Service · @Transactional&#10;Business Logic" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#22c55e;fontColor=#166534;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="260" y="294" width="320" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="repo" value="Repository&#10;Spring Data JPA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef3c7;strokeColor=#f59e0b;fontColor=#92400e;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="260" y="362" width="320" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ext" value="External APIs&#10;Dialogflow · iamport(KakaoPay) · ipinfo" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f5f9;strokeColor=#94a3b8;fontColor=#475569" vertex="1" parent="1">
+          <mxGeometry x="660" y="294" width="170" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="db" value="Oracle / H2" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#fee2e2;strokeColor=#ef4444;fontColor=#991b1b;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="690" y="372" width="120" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="e0" value="HTTP · Ajax · WebSocket" style="endArrow=block;html=1;strokeColor=#475569;fontColor=#64748b" edge="1" parent="1" source="browser" target="sec">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" style="endArrow=block;html=1;strokeColor=#475569" edge="1" parent="1" source="sec" target="ctrl">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" style="endArrow=block;html=1;strokeColor=#475569" edge="1" parent="1" source="ctrl" target="svc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" style="endArrow=block;html=1;strokeColor=#475569" edge="1" parent="1" source="svc" target="repo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="REST" style="endArrow=block;html=1;dashed=1;strokeColor=#94a3b8;fontColor=#94a3b8" edge="1" parent="1" source="svc" target="ext">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="JPA / JDBC" style="endArrow=block;html=1;strokeColor=#475569;fontColor=#64748b" edge="1" parent="1" source="repo" target="db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
